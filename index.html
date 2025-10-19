@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>S.K.T. Trailer and Truck - บริษัท เอส.เค.ที เทรลเลอร์ แอนด์ ทรัค จำกัด</title>
     <style>
         * {
@@ -13,18 +11,47 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #0052cc;
+            --secondary: #00cc66;
+            --dark: #003d7a;
+            --light: #f9f9f9;
+            --text: #333;
+            --text-light: #666;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-tap-highlight-color: transparent;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .about,
+        body.dark-mode .gallery {
+            background-color: #242424;
+        }
+
+        body.dark-mode .service-card,
+        body.dark-mode .gallery-item,
+        body.dark-mode .contact-card {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .service-card h3,
+        body.dark-mode .gallery-label {
+            color: var(--secondary);
         }
 
         header {
-            background: rgba(0, 82, 204, 0.95);
+            background: linear-gradient(135deg, #001f3f 0%, #002856 50%, #003d7a 100%);
             backdrop-filter: blur(10px);
             color: white;
             padding: 15px 0;
@@ -70,9 +97,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 4px 15px rgba(0, 204, 102, 0.3);
-            animation: pulse 2s ease-in-out infinite;
             overflow: hidden;
             padding: 3px;
         }
@@ -83,9 +107,52 @@
             object-fit: contain;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .dark-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+
+        .dark-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         nav ul {
@@ -112,7 +179,7 @@
             left: 50%;
             width: 0;
             height: 2px;
-            background: #00cc66;
+            background: var(--secondary);
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
@@ -123,32 +190,47 @@
 
         .hero {
             position: relative;
-            background: linear-gradient(135deg, rgba(0, 82, 204, 0.85) 0%, rgba(0, 67, 153, 0.85) 50%, rgba(0, 204, 102, 0.85) 100%);
-            background-image: url('https://images.unsplash.com/photo-1559158775-0b13decda7d0?w=1200&h=600&fit=crop');
-            background-size: cover;
-            background-position: center;
             color: white;
-            padding: 120px 20px;
+            padding: 0;
             text-align: center;
             overflow: hidden;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .hero::after {
-            content: '';
+        .hero-video-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0, 82, 204, 0.8) 0%, rgba(0, 67, 153, 0.8) 50%, rgba(0, 204, 102, 0.8) 100%);
-            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 82, 204, 0.5) 0%, rgba(0, 67, 153, 0.5) 50%, rgba(0, 0, 0, 0.4) 100%);
+            z-index: 1;
         }
 
         .hero-content {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
             position: relative;
-            z-index: 1;
+            z-index: 2;
             animation: fadeInUp 1s ease;
         }
 
@@ -174,12 +256,11 @@
             font-size: 22px;
             margin-bottom: 40px;
             opacity: 0.95;
-            animation: fadeInUp 1s ease 0.2s both;
         }
 
         .cta-button {
             background: white;
-            color: #0052cc;
+            color: var(--primary);
             padding: 16px 50px;
             border: none;
             border-radius: 50px;
@@ -188,13 +269,12 @@
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 1s ease 0.4s both;
         }
 
         .cta-button:hover {
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            background: #00cc66;
+            background: var(--secondary);
             color: white;
         }
 
@@ -210,17 +290,10 @@
 
         .about {
             background: linear-gradient(180deg, #f9f9f9 0%, #ffffff 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-content {
-            position: relative;
-            z-index: 2;
         }
 
         .about h2 {
-            color: #0052cc;
+            color: var(--primary);
             font-size: 42px;
             margin-bottom: 30px;
             position: relative;
@@ -234,7 +307,7 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background: linear-gradient(90deg, #00cc66, #0052cc);
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
             border-radius: 2px;
         }
 
@@ -243,12 +316,107 @@
             margin: 0 auto;
             line-height: 1.9;
             font-size: 17px;
-            animation: fadeIn 1s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            margin-top: 10px;
+        }
+
+        .services {
+            background: linear-gradient(135deg, #001f3f 0%, #002856 50%, #003d7a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services h2 {
+            color: white;
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .service-card:hover .service-icon {
+            animation: spin 0.6s ease;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.7;
         }
 
         .gallery {
@@ -256,7 +424,7 @@
         }
 
         .gallery h2 {
-            color: #0052cc;
+            color: var(--primary);
             font-size: 42px;
             text-align: center;
             margin-bottom: 30px;
@@ -272,8 +440,8 @@
 
         .filter-btn {
             background: white;
-            color: #0052cc;
-            border: 2px solid #0052cc;
+            color: var(--primary);
+            border: 2px solid var(--primary);
             padding: 10px 25px;
             border-radius: 25px;
             cursor: pointer;
@@ -284,7 +452,7 @@
 
         .filter-btn:hover,
         .filter-btn.active {
-            background: #0052cc;
+            background: var(--primary);
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 82, 204, 0.3);
@@ -315,7 +483,7 @@
         .gallery-image {
             width: 100%;
             height: 280px;
-            background: linear-gradient(135deg, #0052cc, #00cc66);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -333,25 +501,10 @@
             z-index: 0;
         }
 
-        .gallery-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
-            transition: all 0.4s ease;
-        }
-
-        .gallery-item:hover .gallery-image::before {
-            background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.2) 100%);
-        }
-
         .gallery-label {
             padding: 20px;
             text-align: center;
-            color: #333;
+            color: var(--text);
             font-weight: 600;
             font-size: 17px;
             background: white;
@@ -359,14 +512,14 @@
         }
 
         .gallery-item:hover .gallery-label {
-            background: #0052cc;
+            background: var(--primary);
             color: white;
         }
 
         .gallery-type {
             display: inline-block;
             background: #e3f2fd;
-            color: #0052cc;
+            color: var(--primary);
             padding: 5px 12px;
             border-radius: 12px;
             font-size: 12px;
@@ -375,7 +528,7 @@
         }
 
         .contact {
-            background: linear-gradient(135deg, #0052cc 0%, #004399 100%);
+            background: linear-gradient(135deg, #001f3f 0%, #002856 50%, #003d7a 100%);
             color: white;
             position: relative;
             overflow: hidden;
@@ -415,7 +568,7 @@
         }
 
         .contact-card h3 {
-            color: #00cc66;
+            color: var(--secondary);
             margin-bottom: 15px;
             font-size: 20px;
         }
@@ -435,12 +588,140 @@
         }
 
         .contact-card a:hover {
-            color: #00cc66;
+            color: var(--secondary);
             transform: translateX(5px);
         }
 
+        .contact-form {
+            max-width: 600px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 204, 102, 0.3);
+        }
+
+        .form-error {
+            color: #ff4444;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.3s;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: var(--primary);
+        }
+
+        .modal-header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: var(--primary);
+            margin: 0;
+        }
+
         footer {
-            background: #003d7a;
+            background: var(--dark);
             color: white;
             text-align: center;
             padding: 25px;
@@ -448,58 +729,66 @@
         }
 
         @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                gap: 15px;
-                align-items: flex-start;
+            .hamburger {
+                display: flex;
             }
 
             nav ul {
-                gap: 10px 20px;
-                font-size: 14px;
+                position: absolute;
+                top: 60px;
+                left: 0;
                 width: 100%;
-                justify-content: flex-start;
+                background: rgba(0, 82, 204, 0.95);
+                flex-direction: column;
+                gap: 10px;
+                padding: 20px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s;
             }
 
-            .hero {
-                padding: 80px 20px 100px;
+            nav ul.active {
+                max-height: 500px;
+            }
+
+            nav {
+                flex-wrap: wrap;
             }
 
             .hero h1 {
                 font-size: 28px;
-                line-height: 1.3;
             }
 
             .hero p {
                 font-size: 16px;
-                line-height: 1.5;
             }
 
             section {
                 padding: 50px 20px;
             }
 
-            .about h2, .gallery h2, .contact h2 {
-                font-size: 28px;
-                text-align: center;
+            h2 {
+                font-size: 28px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 16px;
             }
 
             .filter-buttons {
-                gap: 10px;
+                gap: 8px;
             }
 
             .filter-btn {
                 padding: 8px 15px;
                 font-size: 12px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-
-            .gallery-image {
-                height: 220px;
             }
         }
     </style>
@@ -513,16 +802,31 @@
                 </div>
                 <span>S.K.T.</span>
             </div>
-            <ul>
-                <li><a href="#home">หน้าแรก</a></li>
-                <li><a href="#about">เกี่ยวกับ</a></li>
-                <li><a href="#gallery">ผลงาน</a></li>
-                <li><a href="#contact">ติดต่อ</a></li>
-            </ul>
+            <div class="nav-right">
+                <ul id="navMenu">
+                    <li><a href="#home">หน้าแรก</a></li>
+                    <li><a href="#about">เกี่ยวกับ</a></li>
+                    <li><a href="#services">บริการ</a></li>
+                    <li><a href="#gallery">ผลงาน</a></li>
+                    <li><a href="#contact">ติดต่อ</a></li>
+                </ul>
+                <button class="dark-toggle" id="darkToggle" title="Dark Mode">🌙</button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </nav>
     </header>
 
     <div class="hero" id="home">
+        <div class="hero-video-container">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="https://assets.mixkit.co/active_storage/videos/47225/47225-720.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
         <div class="hero-content">
             <h1>เอส.เค.ที เทรลเลอร์ แอนด์ ทรัค จำกัด</h1>
             <p>บริการต่อตัวถังรถบรรทุกคุณภาพสูงระดับมืออาชีพ</p>
@@ -531,230 +835,57 @@
     </div>
 
     <section class="about" id="about">
-        <div class="about-content">
-            <h2>เกี่ยวกับบริษัท</h2>
-            <p style="margin-bottom: 15px; margin-top: 30px;">
-                บริษัท เอส.เค.ที เทรลเลอร์ แอนด์ ทรัค จำกัด เป็นบริษัทที่มีประสบการณ์ในการต่อตัวถังรถบรรทุกและการซ่อมแซมรถบรรทุกมากว่า 10 ปี
-            </p>
-            <p style="margin-bottom: 15px;">
-                เรามีทีมช่างผู้มีความชำนาญและอุปกรณ์ที่ทันสมัย พร้อมให้บริการด้วยความเป็นมืออาชีพและมีคุณภาพสูง
-            </p>
-            <p>
-                ลูกค้าของเราอยู่ทั่วภาคเหนือและให้ความไว้วางใจในการทำงานของเรา ด้วยคุณภาพและความตรงต่อเวลา
-            </p>
-        </div>
-    </section>
-
-    <section class="gallery" id="gallery">
         <div class="container">
-            <h2>ผลงานและรูปแบบรถของเรา</h2>
-            
-            <div class="filter-buttons">
-                <button class="filter-btn active" onclick="filterGallery('all')">ทั้งหมด</button>
-                <button class="filter-btn" onclick="filterGallery('cargo')">ตัวถังสินค้า</button>
-                <button class="filter-btn" onclick="filterGallery('water')">ตัวถังน้ำ</button>
-                <button class="filter-btn" onclick="filterGallery('dump')">ดัมป์</button>
-                <button class="filter-btn" onclick="filterGallery('special')">พิเศษ</button>
-                <button class="filter-btn" onclick="filterGallery('repair')">งานซ่อม</button>
-                <button class="filter-btn" onclick="filterGallery('service')">งาน Service</button>
+            <h2>เกี่ยวกับบริษัท</h2>
+            <div class="about-content" style="margin-top: 30px;">
+                <p style="margin-bottom: 15px;">
+                    บริษัท เอส.เค.ที เทรลเลอร์ แอนด์ ทรัค จำกัด เป็นบริษัทที่มีประสบการณ์ในการต่อตัวถังรถบรรทุกและการซ่อมแซมรถบรรทุกมากว่า 10 ปี
+                </p>
+                <p style="margin-bottom: 15px;">
+                    เรามีทีมช่างผู้มีความชำนาญและอุปกรณ์ที่ทันสมัย พร้อมให้บริการด้วยความเป็นมืออาชีพและมีคุณภาพสูง
+                </p>
+                <p>
+                    ลูกค้าของเราอยู่ทั่วภาคเหนือและให้ความไว้วางใจในการทำงานของเรา ด้วยคุณภาพและความตรงต่อเวลา
+                </p>
             </div>
 
-            <div class="gallery-grid">
-                <!-- ตัวถังสินค้า 1 -->
-                <div class="gallery-item" data-type="cargo">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1594816409629-ae1f1e76d860?w=500&h=500&fit=crop" alt="ตัวถังสินค้า 1">
-                    </div>
-                    <div class="gallery-label">
-                        ตัวถังสินค้า มาตรฐาน
-                        <div class="gallery-type">สินค้า</div>
-                    </div>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label">ปีประสบการณ์</div>
                 </div>
-
-                <!-- ตัวถังน้ำ 1 -->
-                <div class="gallery-item" data-type="water">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=500&h=500&fit=crop" alt="ตัวถังน้ำ 1">
-                    </div>
-                    <div class="gallery-label">
-                        ตัวถังน้ำ 5,000 ลิตร
-                        <div class="gallery-type">น้ำ</div>
-                    </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">โครงการเสร็จสิ้น</div>
                 </div>
-
-                <!-- ตัวถังน้ำ 2 -->
-                <div class="gallery-item" data-type="water">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop" alt="ตัวถังน้ำ 2">
-                    </div>
-                    <div class="gallery-label">
-                        ตัวถังน้ำ 3,000 ลิตร
-                        <div class="gallery-type">น้ำ</div>
-                    </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="99">0</div>
+                    <div class="stat-label">% ความพึงพอใจ</div>
                 </div>
-
-                <!-- ดัมป์ 1 -->
-                <div class="gallery-item" data-type="dump">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1601584942969-51f0c3d3e09a?w=500&h=500&fit=crop" alt="ดัมป์ 1">
-                    </div>
-                    <div class="gallery-label">
-                        ตัวถังดัมป์ 3 คัน
-                        <div class="gallery-type">ดัมป์</div>
-                    </div>
-                </div>
-
-                <!-- ดัมป์ 2 -->
-                <div class="gallery-item" data-type="dump">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1529148482759-b8b9a03dc5b8?w=500&h=500&fit=crop" alt="ดัมป์ 2">
-                    </div>
-                    <div class="gallery-label">
-                        ตัวถังดัมป์ สีเหลือง
-                        <div class="gallery-type">ดัมป์</div>
-                    </div>
-                </div>
-
-                <!-- พิเศษ 2 -->
-                <div class="gallery-item" data-type="special">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=500&h=500&fit=crop" alt="พิเศษ 2">
-                    </div>
-                    <div class="gallery-label">
-                        ตัวถังพิเศษ กำหนดเอง
-                        <div class="gallery-type">พิเศษ</div>
-                    </div>
-                </div>
-
-                <!-- งานซ่อม 1 -->
-                <div class="gallery-item" data-type="repair">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1488592150894-63b08b2b04b1?w=500&h=500&fit=crop" alt="งานซ่อม 1">
-                    </div>
-                    <div class="gallery-label">
-                        ซ่อมตัวถังชำรุด
-                        <div class="gallery-type">งานซ่อม</div>
-                    </div>
-                </div>
-
-                <!-- งานซ่อม 2 -->
-                <div class="gallery-item" data-type="repair">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1486262715933-4c3a4f1d121f?w=500&h=500&fit=crop" alt="งานซ่อม 2">
-                    </div>
-                    <div class="gallery-label">
-                        ซ่อมและปรับแต่ง
-                        <div class="gallery-type">งานซ่อม</div>
-                    </div>
-                </div>
-
-                <!-- งาน Service 1 -->
-                <div class="gallery-item" data-type="service">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1487754180144-c332a2ff9e81?w=500&h=500&fit=crop" alt="งาน Service 1">
-                    </div>
-                    <div class="gallery-label">
-                        บริการตรวจสอบประจำ
-                        <div class="gallery-type">Service</div>
-                    </div>
-                </div>
-
-                <!-- งาน Service 2 -->
-                <div class="gallery-item" data-type="service">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop" alt="งาน Service 2">
-                    </div>
-                    <div class="gallery-label">
-                        บริการดูแลรักษา
-                        <div class="gallery-type">Service</div>
-                    </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">ช่างมืออาชีพ</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="contact" id="contact">
-        <h2>ติดต่อเรา</h2>
-        <div class="contact-content">
-            <div class="contact-card">
-                <h3>📞 เบอร์โทรศัพท์</h3>
-                <p>
-                    <a href="tel:0815862444">081 586 2444</a><br>
-                    <a href="tel:0559062238">055 906 2238</a>
-                </p>
-                <p style="margin-top: 10px; font-size: 14px; opacity: 0.8;">ผู้ติดต่อ: คุณ ธนกฤต</p>
+    <section class="services" id="services">
+        <h2>บริการของเรา</h2>
+        <div class="services-grid">
+            <div class="service-card" onclick="openModal(this)">
+                <div class="service-icon">🔨</div>
+                <h3>ต่อตัวถังใหม่</h3>
+                <p>ผลิตและติดตั้งตัวถังรถบรรทุกใหม่ตามแบบและสเปคที่ลูกค้าต้องการ</p>
+                <small style="color: #0052cc; margin-top: 10px; display: block;">👆 คลิกเพื่อดูรายละเอียด</small>
             </div>
-            <div class="contact-card">
-                <h3>📍 ที่อยู่</h3>
-                <p>230 หมู่ 2 อำเภอ บางระกา จังหวัด<br>พิษณุโลก 65140</p>
+            <div class="service-card" onclick="openModal(this)">
+                <div class="service-icon">🔧</div>
+                <h3>ซ่อมแซมตัวถัง</h3>
+                <p>ซ่อมแซมตัวถังที่ชำรุดหรือเสียหายเพื่อให้กลับมาใช้งานได้ปกติ</p>
+                <small style="color: #0052cc; margin-top: 10px; display: block;">👆 คลิกเพื่อดูรายละเอียด</small>
             </div>
-            <div class="contact-card">
-                <h3>🕐 เวลาทำการ</h3>
-                <p>จันทร์ - ศุกร์: 08:00 - 17:00<br>
-                วันเสาร์-อาทิตย์: ปิด</p>
-            </div>
-            <div class="contact-card">
-                <h3>📱 ติดตามเรา</h3>
-                <p>
-                    <a href="https://www.facebook.com/SktPhitsanulok" target="_blank">Facebook: Skt Phitsanulok</a>
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 S.K.T. Trailer and Truck Limited. All rights reserved.</p>
-    </footer>
-
-    <script>
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        function filterGallery(type) {
-            const items = document.querySelectorAll('.gallery-item');
-            const buttons = document.querySelectorAll('.filter-btn');
-
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            items.forEach(item => {
-                if (type === 'all' || item.dataset.type === type) {
-                    item.style.display = 'block';
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                    }, 10);
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.gallery-item, .contact-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
-        });
-    </script>
-</body>
-</html>
+            <div class="service-card" onclick="openModal(this)">
+                <div class="service-icon">🎨</div>
+                <h3>พ่นสี</h3>
+                <p>บริการพ่นสีโดยช่างที่มีทักษะสูง ให้สีสวยคงทนและ
