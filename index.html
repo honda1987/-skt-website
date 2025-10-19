@@ -25,6 +25,7 @@
             line-height: 1.6;
             color: var(--text);
             overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         body.dark-mode {
@@ -32,23 +33,38 @@
             color: #e0e0e0;
         }
 
-        body.dark-mode .service-card {
+        body.dark-mode .about,
+        body.dark-mode .gallery {
+            background-color: #242424;
+        }
+
+        body.dark-mode .service-card,
+        body.dark-mode .gallery-item,
+        body.dark-mode .contact-card {
             background-color: #2a2a2a;
             color: #e0e0e0;
         }
 
-        body.dark-mode .service-card h3 {
+        body.dark-mode .service-card h3,
+        body.dark-mode .gallery-label {
             color: var(--secondary);
         }
 
         header {
             background: linear-gradient(135deg, #001f3f 0%, #002856 50%, #003d7a 100%);
+            backdrop-filter: blur(10px);
             color: white;
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background: rgba(0, 82, 204, 0.98);
         }
 
         nav {
@@ -66,6 +82,11 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo-icon {
@@ -99,19 +120,53 @@
             padding: 8px 12px;
             border-radius: 50%;
             cursor: pointer;
+            transition: all 0.3s;
             font-size: 18px;
+        }
+
+        .dark-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         nav ul {
             display: flex;
             list-style: none;
             gap: 30px;
+            flex-wrap: wrap;
         }
 
         nav a {
             color: white;
             text-decoration: none;
             font-weight: 500;
+            transition: all 0.3s;
             position: relative;
             padding: 8px 5px;
             display: block;
@@ -139,20 +194,25 @@
             padding: 0;
             text-align: center;
             overflow: hidden;
-            height: 700px;
+            min-height: 700px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .hero-bg-image {
+        .hero-video-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-bg-image {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            z-index: 0;
         }
 
         .hero-overlay {
@@ -171,6 +231,18 @@
             padding: 20px;
             position: relative;
             z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h1 {
@@ -195,12 +267,13 @@
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
         }
 
         .cta-button:hover {
             transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
             background: var(--secondary);
             color: white;
         }
@@ -223,12 +296,26 @@
             color: var(--primary);
             font-size: 42px;
             margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border-radius: 2px;
         }
 
         .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
             line-height: 1.9;
             font-size: 17px;
-            margin-bottom: 40px;
         }
 
         .stats-container {
@@ -260,6 +347,8 @@
 
         .services {
             background: linear-gradient(135deg, #001f3f 0%, #002856 50%, #003d7a 100%);
+            position: relative;
+            overflow: hidden;
         }
 
         .services h2 {
@@ -267,6 +356,8 @@
             font-size: 42px;
             text-align: center;
             margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
         }
 
         .services-grid {
@@ -275,6 +366,8 @@
             gap: 35px;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .service-card {
@@ -282,13 +375,15 @@
             border-radius: 20px;
             padding: 40px;
             text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
         .service-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-15px) scale(1.02);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
         }
 
@@ -296,6 +391,22 @@
             font-size: 60px;
             margin-bottom: 20px;
             display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .service-card:hover .service-icon {
+            animation: spin 0.6s ease;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
         }
 
         .service-card h3 {
@@ -317,7 +428,35 @@
             color: var(--primary);
             font-size: 42px;
             text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
             margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 82, 204, 0.3);
         }
 
         .gallery-grid {
@@ -333,12 +472,12 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
         }
 
         .gallery-item:hover {
-            transform: translateY(-12px);
+            transform: translateY(-12px) rotate(1deg);
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
         }
 
@@ -349,6 +488,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
             overflow: hidden;
         }
 
@@ -356,6 +496,10 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
         }
 
         .gallery-label {
@@ -365,6 +509,7 @@
             font-weight: 600;
             font-size: 17px;
             background: white;
+            transition: all 0.3s ease;
         }
 
         .gallery-item:hover .gallery-label {
@@ -372,15 +517,165 @@
             color: white;
         }
 
+        .gallery-type {
+            display: inline-block;
+            background: #e3f2fd;
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .product-showcase {
+            margin: 80px 0;
+            background-image: url('https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/494493453_1261185576015268_4128083563628497268_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeE0Q8WOC7bkP436up8HgqOnIhgVGQULDkEiGBUZBQsOQdKOhyU_PMzPbarOPu5QWcinmwNpUetxtqnEuoHkTWDT&_nc_ohc=-xm9cLiRfT8Q7kNvwE5ruhp&_nc_oc=AdlVuGDwp-YCPDYGv30dVChDOxs0ZH2MjZUf34ep55ATrgkuJMvNX0RSxEgSndjHadY&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=DW2Npcdo9Z4D5FXHZWEAog&oh=00_AfeOJG7mZgKo4J2l-B5ggR7yboD9lPnGMSKYqqFR2NiTgg&oe=68FA7E4F');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .product-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0);
+            z-index: 0;
+        }
+
+        .product-showcase > .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-showcase h2 {
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+            transition: transform 0.4s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-name {
+            color: var(--primary);
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .product-desc {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+
+        .product-specs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .spec-badge {
+            background: #e3f2fd;
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .product-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .product-link:hover {
+            color: var(--secondary);
+            gap: 12px;
+        }
+
+        .product-link::after {
+            content: '→';
+            transition: transform 0.3s;
+        }
+
         .contact {
             background: linear-gradient(135deg, #001f3f 0%, #002856 50%, #003d7a 100%);
             color: white;
+            position: relative;
+            overflow: hidden;
         }
 
         .contact h2 {
             font-size: 42px;
             text-align: center;
             margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-content {
@@ -389,19 +684,23 @@
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-card {
             background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             padding: 30px;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s;
+            transition: all 0.4s ease;
         }
 
         .contact-card:hover {
             background: rgba(255, 255, 255, 0.15);
             transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
 
         .contact-card h3 {
@@ -412,6 +711,7 @@
 
         .contact-card p {
             font-size: 16px;
+            opacity: 0.95;
             line-height: 1.8;
         }
 
@@ -419,10 +719,13 @@
             color: #fff;
             text-decoration: none;
             font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .contact-card a:hover {
             color: var(--secondary);
+            transform: translateX(5px);
         }
 
         .contact-form {
@@ -468,13 +771,19 @@
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
-            width: 100%;
             transition: all 0.3s;
+            width: 100%;
         }
 
         .form-submit:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(0, 204, 102, 0.3);
+        }
+
+        .form-error {
+            color: #ff4444;
+            font-size: 12px;
+            margin-top: 5px;
         }
 
         footer {
@@ -486,8 +795,30 @@
         }
 
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
             nav ul {
-                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 82, 204, 0.95);
+                flex-direction: column;
+                gap: 10px;
+                padding: 20px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s;
+            }
+
+            nav ul.active {
+                max-height: 500px;
+            }
+
+            nav {
+                flex-wrap: wrap;
             }
 
             .hero h1 {
@@ -504,6 +835,26 @@
 
             h2 {
                 font-size: 28px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+
+            .filter-buttons {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                padding: 8px 15px;
+                font-size: 12px;
             }
         }
     </style>
@@ -526,6 +877,11 @@
                     <li><a href="#contact">ติดต่อ</a></li>
                 </ul>
                 <button class="dark-toggle" id="darkToggle" title="Dark Mode">🌙</button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </nav>
     </header>
@@ -534,142 +890,3 @@
         <img class="hero-bg-image" src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/487131755_3070784256413755_3188429097267305105_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeFOo7BnN3zLHBA_3lMEoJcnwXSaZEK5LErBdJpkQrksSggQK0_qj65zJZ2lGBAnYVGxNMC-nf3rhXOZ9o8gTQ5O&_nc_ohc=S4JAcQkoXDAQ7kNvwExOZs_&_nc_oc=AdlIT2jJ29pWQKW35VPaHgSvNhhqCNVTP6ZtVb5zk5b3dB5P1fzLvL54Bh-ZrwwI1To&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=pv7GV3ENDZmN_VfcPCKEiA&oh=00_Afd3JntYBUwrtkTK-nvz5zpi4YsrcLK7LjFQOsakFr0dFw&oe=68FA7099" alt="Hero Background">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>เอส.เค.ที เทรลเลอร์ แอนด์ ทรัค จำกัด</h1>
-            <p>บริการต่อตัวถังรถบรรทุกคุณภาพสูงระดับมืออาชีพ</p>
-            <button class="cta-button" onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})">ดูผลงานของเรา</button>
-        </div>
-    </div>
-
-    <section class="about" id="about">
-        <div class="container">
-            <h2>เกี่ยวกับบริษัท</h2>
-            <div class="about-content">
-                <p style="margin-bottom: 15px;">
-                    บริษัท เอส.เค.ที เทรลเลอร์ แอนด์ ทรัค จำกัด เป็นบริษัทที่มีประสบการณ์ในการต่อตัวถังรถบรรทุกและการซ่อมแซมรถบรรทุกมากว่า 10 ปี
-                </p>
-                <p style="margin-bottom: 15px;">
-                    เรามีทีมช่างผู้มีความชำนาญและอุปกรณ์ที่ทันสมัย พร้อมให้บริการด้วยความเป็นมืออาชีพและมีคุณภาพสูง
-                </p>
-                <p>
-                    ลูกค้าของเราอยู่ทั่วภาคเหนือและให้ความไว้วางใจในการทำงานของเรา ด้วยคุณภาพและความตรงต่อเวลา
-                </p>
-            </div>
-
-            <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-number">10</div>
-                    <div class="stat-label">ปีประสบการณ์</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">โครงการเสร็จสิ้น</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">99%</div>
-                    <div class="stat-label">ความพึงพอใจ</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">50</div>
-                    <div class="stat-label">ช่างมืออาชีพ</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="services" id="services">
-        <h2>บริการของเรา</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🔨</div>
-                <h3>ต่อตัวถังใหม่</h3>
-                <p>ผลิตและติดตั้งตัวถังรถบรรทุกใหม่ตามแบบและสเปคที่ลูกค้าต้องการ</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🔧</div>
-                <h3>ซ่อมแซมตัวถัง</h3>
-                <p>ซ่อมแซมตัวถังที่ชำรุดหรือเสียหายเพื่อให้กลับมาใช้งานได้ปกติ</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🎨</div>
-                <h3>พ่นสี</h3>
-                <p>บริการพ่นสีโดยช่างที่มีทักษะสูง ให้สีสวยคงทนและเป็นมืออาชีพ</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="gallery" id="gallery">
-        <div class="container">
-            <h2>ผลงานของเรา</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&fit=crop" alt="ตัวถังสินค้า">
-                    </div>
-                    <div class="gallery-label">ตัวถังสินค้า</div>
-                </div>
-
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&h=300&fit=crop" alt="ตัวถังน้ำ">
-                    </div>
-                    <div class="gallery-label">ตัวถังน้ำ</div>
-                </div>
-
-                <div class="gallery-item">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1601584942969-51f0c3d3e09a?w=400&h=300&fit=crop" alt="ตัวถังดัมป์">
-                    </div>
-                    <div class="gallery-label">ตัวถังดัมป์</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2>ติดต่อเรา</h2>
-            <div class="contact-content">
-                <div class="contact-card">
-                    <h3>📞 โทรศัพท์</h3>
-                    <p><a href="tel:+66812345678">081-234-5678</a></p>
-                </div>
-                <div class="contact-card">
-                    <h3>📍 ที่อยู่</h3>
-                    <p>เชียงใหม่ ประเทศไทย</p>
-                </div>
-                <div class="contact-card">
-                    <h3>✉️ อีเมล</h3>
-                    <p><a href="mailto:info@skttrailer.com">info@skttrailer.com</a></p>
-                </div>
-            </div>
-
-            <div class="contact-form">
-                <h3 style="color: white; margin-bottom: 20px;">ส่งข้อความถึงเรา</h3>
-                <div class="form-group">
-                    <label for="name">ชื่อ</label>
-                    <input type="text" id="name" placeholder="ชื่อของคุณ">
-                </div>
-                <div class="form-group">
-                    <label for="email">อีเมล</label>
-                    <input type="email" id="email" placeholder="อีเมลของคุณ">
-                </div>
-                <div class="form-group">
-                    <label for="message">ข้อความ</label>
-                    <textarea id="message" placeholder="ข้อความของคุณ"></textarea>
-                </div>
-                <button class="form-submit">ส่งข้อความ</button>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 บริษัท เอส.เค.ที เทรลเลอร์ แอนด์ ทรัค จำกัด สงวนสิทธิ์ทั้งหมด</p>
-    </footer>
-
-    <script>
-        document.getElementById('darkToggle').addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
-        });
-    </script>
-</body>
-</html>
