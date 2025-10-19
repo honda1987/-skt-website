@@ -63,16 +63,24 @@
         }
 
         .logo-icon {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             background: white;
-            border-radius: 50%;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
             box-shadow: 0 4px 15px rgba(0, 204, 102, 0.3);
             animation: pulse 2s ease-in-out infinite;
+            overflow: hidden;
+            padding: 3px;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         @keyframes pulse {
@@ -115,7 +123,10 @@
 
         .hero {
             position: relative;
-            background: linear-gradient(135deg, rgba(0, 82, 204, 0.9) 0%, rgba(0, 67, 153, 0.9) 50%, rgba(0, 204, 102, 0.9) 100%);
+            background: linear-gradient(135deg, rgba(0, 82, 204, 0.85) 0%, rgba(0, 67, 153, 0.85) 50%, rgba(0, 204, 102, 0.85) 100%);
+            background-image: url('https://images.unsplash.com/photo-1559158775-0b13decda7d0?w=1200&h=600&fit=crop');
+            background-size: cover;
+            background-position: center;
             color: white;
             padding: 120px 20px;
             text-align: center;
@@ -497,7 +508,9 @@
     <header id="header">
         <nav>
             <div class="logo">
-                <div class="logo-icon">🚚</div>
+                <div class="logo-icon">
+                    <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/454507264_1035213625279132_5725939772864053502_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEga2cUIw_ALRwkSESShyyLoIWmjBfE_BSghaaMF8T8FE8UskvMXBVEjMAMCW2gHYArX7NUNgPiZt-1jKV6LYvI&_nc_ohc=EoPLpICCNJMQ7kNvwFc27Rq&_nc_oc=AdlOdG-k3l-r6CdwRChys5fpU5FJwlnsQdGuLO7m3XyZPuXUakTP9ZXOYk4HqnWcfw8&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=oxDs7rt9Tb0q0XIxF_MNVg&oh=00_Afeb5BWh8cHpvUnpaL7PkV7ygnmnEo699gudE8LyvmyEDw&oe=68FA4734" alt="SKT Logo">
+                </div>
                 <span>S.K.T.</span>
             </div>
             <ul>
@@ -540,9 +553,10 @@
                 <button class="filter-btn active" onclick="filterGallery('all')">ทั้งหมด</button>
                 <button class="filter-btn" onclick="filterGallery('cargo')">ตัวถังสินค้า</button>
                 <button class="filter-btn" onclick="filterGallery('water')">ตัวถังน้ำ</button>
-                <button class="filter-btn" onclick="filterGallery('container')">コンテナ</button>
                 <button class="filter-btn" onclick="filterGallery('dump')">ดัมป์</button>
                 <button class="filter-btn" onclick="filterGallery('special')">พิเศษ</button>
+                <button class="filter-btn" onclick="filterGallery('repair')">งานซ่อม</button>
+                <button class="filter-btn" onclick="filterGallery('service')">งาน Service</button>
             </div>
 
             <div class="gallery-grid">
@@ -553,28 +567,6 @@
                     </div>
                     <div class="gallery-label">
                         ตัวถังสินค้า มาตรฐาน
-                        <div class="gallery-type">สินค้า</div>
-                    </div>
-                </div>
-
-                <!-- ตัวถังสินค้า 2 -->
-                <div class="gallery-item" data-type="cargo">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1581578731548-c64695c952952?w=500&h=500&fit=crop" alt="ตัวถังสินค้า 2">
-                    </div>
-                    <div class="gallery-label">
-                        ตัวถังสินค้า สีม่วง
-                        <div class="gallery-type">สินค้า</div>
-                    </div>
-                </div>
-
-                <!-- ตัวถังสินค้า 3 -->
-                <div class="gallery-item" data-type="cargo">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1586359772929-70f573935337?w=500&h=500&fit=crop" alt="ตัวถังสินค้า 3">
-                    </div>
-                    <div class="gallery-label">
-                        ตัวถังสินค้า สีแดง
                         <div class="gallery-type">สินค้า</div>
                     </div>
                 </div>
@@ -601,39 +593,6 @@
                     </div>
                 </div>
 
-                <!-- ตัวถังน้ำ 3 -->
-                <div class="gallery-item" data-type="water">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1577720643272-265ba08ecf7f?w=500&h=500&fit=crop" alt="ตัวถังน้ำ 3">
-                    </div>
-                    <div class="gallery-label">
-                        ตัวถังน้ำ ขนาดเล็ก
-                        <div class="gallery-type">น้ำ</div>
-                    </div>
-                </div>
-
-                <!-- คอนเทนเนอร์ 1 -->
-                <div class="gallery-item" data-type="container">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1527307029388-db7d4a8e02f8?w=500&h=500&fit=crop" alt="คอนเทนเนอร์ 1">
-                    </div>
-                    <div class="gallery-label">
-                        ตัวถังคอนเทนเนอร์ 20 ฟุต
-                        <div class="gallery-type">Container</div>
-                    </div>
-                </div>
-
-                <!-- คอนเทนเนอร์ 2 -->
-                <div class="gallery-item" data-type="container">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?w=500&h=500&fit=crop" alt="คอนเทนเนอร์ 2">
-                    </div>
-                    <div class="gallery-label">
-                        ตัวถังคอนเทนเนอร์ 40 ฟุต
-                        <div class="gallery-type">Container</div>
-                    </div>
-                </div>
-
                 <!-- ดัมป์ 1 -->
                 <div class="gallery-item" data-type="dump">
                     <div class="gallery-image">
@@ -656,17 +615,6 @@
                     </div>
                 </div>
 
-                <!-- พิเศษ 1 -->
-                <div class="gallery-item" data-type="special">
-                    <div class="gallery-image">
-                        <img src="https://images.unsplash.com/photo-1611437281884-b7b4f2c4d654?w=500&h=500&fit=crop" alt="พิเศษ 1">
-                    </div>
-                    <div class="gallery-label">
-                        ตัวถังพิเศษ ฝึกซ้อม
-                        <div class="gallery-type">พิเศษ</div>
-                    </div>
-                </div>
-
                 <!-- พิเศษ 2 -->
                 <div class="gallery-item" data-type="special">
                     <div class="gallery-image">
@@ -675,6 +623,50 @@
                     <div class="gallery-label">
                         ตัวถังพิเศษ กำหนดเอง
                         <div class="gallery-type">พิเศษ</div>
+                    </div>
+                </div>
+
+                <!-- งานซ่อม 1 -->
+                <div class="gallery-item" data-type="repair">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1488592150894-63b08b2b04b1?w=500&h=500&fit=crop" alt="งานซ่อม 1">
+                    </div>
+                    <div class="gallery-label">
+                        ซ่อมตัวถังชำรุด
+                        <div class="gallery-type">งานซ่อม</div>
+                    </div>
+                </div>
+
+                <!-- งานซ่อม 2 -->
+                <div class="gallery-item" data-type="repair">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1486262715933-4c3a4f1d121f?w=500&h=500&fit=crop" alt="งานซ่อม 2">
+                    </div>
+                    <div class="gallery-label">
+                        ซ่อมและปรับแต่ง
+                        <div class="gallery-type">งานซ่อม</div>
+                    </div>
+                </div>
+
+                <!-- งาน Service 1 -->
+                <div class="gallery-item" data-type="service">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1487754180144-c332a2ff9e81?w=500&h=500&fit=crop" alt="งาน Service 1">
+                    </div>
+                    <div class="gallery-label">
+                        บริการตรวจสอบประจำ
+                        <div class="gallery-type">Service</div>
+                    </div>
+                </div>
+
+                <!-- งาน Service 2 -->
+                <div class="gallery-item" data-type="service">
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop" alt="งาน Service 2">
+                    </div>
+                    <div class="gallery-label">
+                        บริการดูแลรักษา
+                        <div class="gallery-type">Service</div>
                     </div>
                 </div>
             </div>
@@ -694,7 +686,7 @@
             </div>
             <div class="contact-card">
                 <h3>📍 ที่อยู่</h3>
-                <p>230 หมู่ 2 สำนัก บางระกา สำนัก<br>พิษณุโลก 65140</p>
+                <p>230 หมู่ 2 อำเภอ บางระกา จังหวัด<br>พิษณุโลก 65140</p>
             </div>
             <div class="contact-card">
                 <h3>🕐 เวลาทำการ</h3>
