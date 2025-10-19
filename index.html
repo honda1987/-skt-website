@@ -527,6 +527,188 @@
             font-weight: 500;
         }
 
+        .carousel {
+            margin: 50px auto;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 400px;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-btn.active {
+            background: white;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            color: white;
+            font-size: 24px;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 5;
+        }
+
+        .carousel-arrow:hover {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .carousel-arrow.prev {
+            left: 0;
+        }
+
+        .product-showcase {
+            margin: 80px 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+            transition: transform 0.4s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-name {
+            color: var(--primary);
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .product-desc {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+
+        .product-specs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .spec-badge {
+            background: #e3f2fd;
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .product-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .product-link:hover {
+            color: var(--secondary);
+            gap: 12px;
+        }
+
+        .product-link::after {
+            content: '→';
+            transition: transform 0.3s;
+        }
+
         .contact {
             background: linear-gradient(135deg, #001f3f 0%, #002856 50%, #003d7a 100%);
             color: white;
@@ -845,7 +1027,152 @@
                     เรามีทีมช่างผู้มีความชำนาญและอุปกรณ์ที่ทันสมัย พร้อมให้บริการด้วยความเป็นมืออาชีพและมีคุณภาพสูง
                 </p>
                 <p>
-                    ลูกค้าของเราอยู่ทั่วภูมิภาคของประเทศและให้ความไว้วางใจในการทำงานของเรา ด้วยคุณภาพและความตรงต่อเวลา
+                    ลูกค้าของเราอยู่ทั่วภาคเหนือและให้ความไว้วางใจในการทำงานของเรา ด้วยคุณภาพและความตรงต่อเวลา
+                </p>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label">ปีประสบการณ์</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">โครงการเสร็จสิ้น</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="99">0</div>
+                    <div class="stat-label">% ความพึงพอใจ</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">ช่างมืออาชีพ</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section class="product-showcase" id="products">
+        <div class="container">
+            <h2 style="text-align: center; color: var(--primary); font-size: 42px; margin-bottom: 60px;">รถบรรทุกแต่ละประเภท</h2>
+            
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&fit=crop" alt="ตัวถังสินค้า">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">ตัวถังสินค้า</div>
+                        <div class="product-desc">รถบรรทุกสำหรับขนส่งสินค้าทั่วไป มี capacity ขนาดต่างๆ ตามความต้องการ</div>
+                        <div class="product-specs">
+                            <span class="spec-badge">6 ล้อ</span>
+                            <span class="spec-badge">10 ตัน</span>
+                            <span class="spec-badge">มีเก็บ</span>
+                        </div>
+                        <a href="#contact" class="product-link">ติดต่อสอบถาม</a>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&h=300&fit=crop" alt="ตัวถังน้ำ">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">ตัวถังน้ำ</div>
+                        <div class="product-desc">รถบรรทุกขนส่งน้ำ สำหรับใช้ในการก่อสร้างและอุตสาหกรรม</div>
+                        <div class="product-specs">
+                            <span class="spec-badge">3,000-5,000 ลิตร</span>
+                            <span class="spec-badge">สเตนเลส</span>
+                            <span class="spec-badge">ทดสอบแล้ว</span>
+                        </div>
+                        <a href="#contact" class="product-link">ติดต่อสอบถาม</a>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1601584942969-51f0c3d3e09a?w=400&h=300&fit=crop" alt="ตัวถังดัมป์">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">ตัวถังดัมป์</div>
+                        <div class="product-desc">รถบรรทุกดัมป์สำหรับขนส่งดินทราย หิน และวัสดุก่อสร้างอื่นๆ</div>
+                        <div class="product-specs">
+                            <span class="spec-badge">3 คัน</span>
+                            <span class="spec-badge">ยกสูง</span>
+                            <span class="spec-badge">พื้นสเตนเลส</span>
+                        </div>
+                        <a href="#contact" class="product-link">ติดต่อสอบถาม</a>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1488592150894-63b08b2b04b1?w=400&h=300&fit=crop" alt="ตัวถังซ่อม">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">บริการซ่อมแซม</div>
+                        <div class="product-desc">บริการซ่อมและแก้ไขตัวถังรถบรรทุกที่ชำรุดให้กลับสภาพเดิม</div>
+                        <div class="product-specs">
+                            <span class="spec-badge">ช่างมืออาชีพ</span>
+                            <span class="spec-badge">งานตรงเวลา</span>
+                            <span class="spec-badge">รับประกัน</span>
+                        </div>
+                        <a href="#contact" class="product-link">ติดต่อสอบถาม</a>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1486262715933-4c3a4f1d121f?w=400&h=300&fit=crop" alt="บริการพ่นสี">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">บริการพ่นสี</div>
+                        <div class="product-desc">บริการพ่นสีด้วยเทคนิคสมัยใหม่ให้สีสดใหม่และทนทาน</div>
+                        <div class="product-specs">
+                            <span class="spec-badge">สีเกาหลี</span>
+                            <span class="spec-badge">ทนแรง</span>
+                            <span class="spec-badge">หลายสี</span>
+                        </div>
+                        <a href="#contact" class="product-link">ติดต่อสอบถาม</a>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1487754180144-c332a2ff9e81?w=400&h=300&fit=crop" alt="บริการ Service">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">บริการ Service</div>
+                        <div class="product-desc">บริการตรวจสอบและดูแลรักษารถบรรทุกให้อยู่ในสภาพดีสม่ำเสมอ</div>
+                        <div class="product-specs">
+                            <span class="spec-badge">ประจำเดือน</span>
+                            <span class="spec-badge">ชำนาญการ</span>
+                            <span class="spec-badge">ราคาเยา</span>
+                        </div>
+                        <a href="#contact" class="product-link">ติดต่อสอบถาม</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <div class="container">
+            <h2>เกี่ยวกับบริษัท</h2>
+            <div class="about-content" style="margin-top: 30px;">
+                <p style="margin-bottom: 15px;">
+                    บริษัท เอส.เค.ที เทรลเลอร์ แอนด์ ทรัค จำกัด เป็นบริษัทที่มีประสบการณ์ในการต่อตัวถังรถบรรทุกและการซ่อมแซมรถบรรทุกมากว่า 10 ปี
+                </p>
+                <p style="margin-bottom: 15px;">
+                    เรามีทีมช่างผู้มีความชำนาญและอุปกรณ์ที่ทันสมัย พร้อมให้บริการด้วยความเป็นมืออาชีพและมีคุณภาพสูง
+                </p>
+                <p>
+                    ลูกค้าของเราอยู่ทั่วภาคเหนือและให้ความไว้วางใจในการทำงานของเรา ด้วยคุณภาพและความตรงต่อเวลา
                 </p>
             </div>
 
