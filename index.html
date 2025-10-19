@@ -209,6 +209,12 @@
             overflow: hidden;
         }
 
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .hero-bg-image {
             width: 100%;
             height: 100%;
@@ -322,27 +328,26 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
-            margin-top: 60px;
+            margin-top: 40px;
         }
 
         .stat-card {
             text-align: center;
-            padding: 30px;
+            padding: 20px;
             background: white;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .stat-number {
-            font-size: 48px;
+            font-size: 36px;
             font-weight: bold;
             color: var(--primary);
         }
 
         .stat-label {
             color: var(--text-light);
-            margin-top: 15px;
-            font-size: 16px;
+            margin-top: 10px;
         }
 
         .services {
@@ -526,6 +531,83 @@
             font-size: 12px;
             margin-top: 8px;
             font-weight: 500;
+        }
+
+        .carousel {
+            margin: 50px auto;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 400px;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-btn.active {
+            background: white;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            color: white;
+            font-size: 24px;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 5;
+        }
+
+        .carousel-arrow:hover {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .carousel-arrow.prev {
+            left: 0;
         }
 
         .product-showcase {
@@ -786,6 +868,76 @@
             margin-top: 5px;
         }
 
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.3s;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: var(--primary);
+        }
+
+        .modal-header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: var(--primary);
+            margin: 0;
+        }
+
         footer {
             background: var(--dark);
             color: white;
@@ -887,6 +1039,214 @@
     </header>
 
     <div class="hero" id="home">
-        <img class="hero-bg-image" src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/487131755_3070784256413755_3188429097267305105_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeFOo7BnN3zLHBA_3lMEoJcnwXSaZEK5LErBdJpkQrksSggQK0_qj65zJZ2lGBAnYVGxNMC-nf3rhXOZ9o8gTQ5O&_nc_ohc=S4JAcQkoXDAQ7kNvwExOZs_&_nc_oc=AdlIT2jJ29pWQKW35VPaHgSvNhhqCNVTP6ZtVb5zk5b3dB5P1fzLvL54Bh-ZrwwI1To&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=pv7GV3ENDZmN_VfcPCKEiA&oh=00_Afd3JntYBUwrtkTK-nvz5zpi4YsrcLK7LjFQOsakFr0dFw&oe=68FA7099" alt="Hero Background">
-        <div class="hero-overlay"></div>
+        <div class="hero-video-container">
+            <img class="hero-bg-image" src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/487131755_3070784256413755_3188429097267305105_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeFOo7BnN3zLHBA_3lMEoJcnwXSaZEK5LErBdJpkQrksSggQK0_qj65zJZ2lGBAnYVGxNMC-nf3rhXOZ9o8gTQ5O&_nc_ohc=S4JAcQkoXDAQ7kNvwExOZs_&_nc_oc=AdlIT2jJ29pWQKW35VPaHgSvNhhqCNVTP6ZtVb5zk5b3dB5P1fzLvL54Bh-ZrwwI1To&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=pv7GV3ENDZmN_VfcPCKEiA&oh=00_Afd3JntYBUwrtkTK-nvz5zpi4YsrcLK7LjFQOsakFr0dFw&oe=68FA7099" alt="Hero Background">
+            <div class="hero-overlay"></div>
+        </div>
         <div class="hero-content">
+            <h1>เอส.เค.ที เทรลเลอร์ แอนด์ ทรัค จำกัด</h1>
+            <p>บริการต่อตัวถังรถบรรทุกคุณภาพสูงระดับมืออาชีพ</p>
+            <button class="cta-button" onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})">ดูผลงานของเรา</button>
+        </div>
+    </div>
+
+    <section class="about" id="about">
+        <div class="container">
+            <h2>เกี่ยวกับบริษัท</h2>
+            <div class="about-content" style="margin-top: 30px;">
+                <p style="margin-bottom: 15px;">
+                    บริษัท เอส.เค.ที เทรลเลอร์ แอนด์ ทรัค จำกัด เป็นบริษัทที่มีประสบการณ์ในการต่อตัวถังรถบรรทุกและการซ่อมแซมรถบรรทุกมากว่า 10 ปี
+                </p>
+                <p style="margin-bottom: 15px;">
+                    เรามีทีมช่างผู้มีความชำนาญและอุปกรณ์ที่ทันสมัย พร้อมให้บริการด้วยความเป็นมืออาชีพและมีคุณภาพสูง
+                </p>
+                <p>
+                    ลูกค้าของเราอยู่ทั่วภาคเหนือและให้ความไว้วางใจในการทำงานของเรา ด้วยคุณภาพและความตรงต่อเวลา
+                </p>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label">ปีประสบการณ์</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">โครงการเสร็จสิ้น</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="99">0</div>
+                    <div class="stat-label">% ความพึงพอใจ</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">ช่างมืออาชีพ</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section class="product-showcase" id="products">
+        <div class="container">
+            <h2 style="text-align: center; color: var(--primary); font-size: 42px; margin-bottom: 60px;">รถบรรทุกแต่ละประเภท</h2>
+            
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&fit=crop" alt="ตัวถังสินค้า">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">ตัวถังสินค้า</div>
+                        <div class="product-desc">รถบรรทุกสำหรับขนส่งสินค้าทั่วไป มี capacity ขนาดต่างๆ ตามความต้องการ</div>
+                        <div class="product-specs">
+                            <span class="spec-badge">6 ล้อ</span>
+                            <span class="spec-badge">10 ตัน</span>
+                            <span class="spec-badge">มีเก็บ</span>
+                        </div>
+                        <a href="#contact" class="product-link">ติดต่อสอบถาม</a>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&h=300&fit=crop" alt="ตัวถังน้ำ">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">ตัวถังน้ำ</div>
+                        <div class="product-desc">รถบรรทุกขนส่งน้ำ สำหรับใช้ในการก่อสร้างและอุตสาหกรรม</div>
+                        <div class="product-specs">
+                            <span class="spec-badge">3,000-5,000 ลิตร</span>
+                            <span class="spec-badge">สเตนเลส</span>
+                            <span class="spec-badge">ทดสอบแล้ว</span>
+                        </div>
+                        <a href="#contact" class="product-link">ติดต่อสอบถาม</a>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1601584942969-51f0c3d3e09a?w=400&h=300&fit=crop" alt="ตัวถังดัมป์">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">ตัวถังดัมป์</div>
+                        <div class="product-desc">รถบรรทุกดัมป์สำหรับขนส่งดินทราย หิน และวัสดุก่อสร้างอื่นๆ</div>
+                        <div class="product-specs">
+                            <span class="spec-badge">3 คัน</span>
+                            <span class="spec-badge">ยกสูง</span>
+                            <span class="spec-badge">พื้นสเตนเลส</span>
+                        </div>
+                        <a href="#contact" class="product-link">ติดต่อสอบถาม</a>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1488592150894-63b08b2b04b1?w=400&h=300&fit=crop" alt="ตัวถังซ่อม">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">บริการซ่อมแซม</div>
+                        <div class="product-desc">บริการซ่อมและแก้ไขตัวถังรถบรรทุกที่ชำรุดให้กลับสภาพเดิม</div>
+                        <div class="product-specs">
+                            <span class="spec-badge">ช่างมืออาชีพ</span>
+                            <span class="spec-badge">งานตรงเวลา</span>
+                            <span class="spec-badge">รับประกัน</span>
+                        </div>
+                        <a href="#contact" class="product-link">ติดต่อสอบถาม</a>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1486262715933-4c3a4f1d121f?w=400&h=300&fit=crop" alt="บริการพ่นสี">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">บริการพ่นสี</div>
+                        <div class="product-desc">บริการพ่นสีด้วยเทคนิคสมัยใหม่ให้สีสดใหม่และทนทาน</div>
+                        <div class="product-specs">
+                            <span class="spec-badge">สีเกาหลี</span>
+                            <span class="spec-badge">ทนแรง</span>
+                            <span class="spec-badge">หลายสี</span>
+                        </div>
+                        <a href="#contact" class="product-link">ติดต่อสอบถาม</a>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1487754180144-c332a2ff9e81?w=400&h=300&fit=crop" alt="บริการ Service">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">บริการ Service</div>
+                        <div class="product-desc">บริการตรวจสอบและดูแลรักษารถบรรทุกให้อยู่ในสภาพดีสม่ำเสมอ</div>
+                        <div class="product-specs">
+                            <span class="spec-badge">ประจำเดือน</span>
+                            <span class="spec-badge">ชำนาญการ</span>
+                            <span class="spec-badge">ราคาเยา</span>
+                        </div>
+                        <a href="#contact" class="product-link">ติดต่อสอบถาม</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <div class="container">
+            <h2>เกี่ยวกับบริษัท</h2>
+            <div class="about-content" style="margin-top: 30px;">
+                <p style="margin-bottom: 15px;">
+                    บริษัท เอส.เค.ที เทรลเลอร์ แอนด์ ทรัค จำกัด เป็นบริษัทที่มีประสบการณ์ในการต่อตัวถังรถบรรทุกและการซ่อมแซมรถบรรทุกมากว่า 10 ปี
+                </p>
+                <p style="margin-bottom: 15px;">
+                    เรามีทีมช่างผู้มีความชำนาญและอุปกรณ์ที่ทันสมัย พร้อมให้บริการด้วยความเป็นมืออาชีพและมีคุณภาพสูง
+                </p>
+                <p>
+                    ลูกค้าของเราอยู่ทั่วภาคเหนือและให้ความไว้วางใจในการทำงานของเรา ด้วยคุณภาพและความตรงต่อเวลา
+                </p>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label">ปีประสบการณ์</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">โครงการเสร็จสิ้น</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="99">0</div>
+                    <div class="stat-label">% ความพึงพอใจ</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">ช่างมืออาชีพ</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2>บริการของเรา</h2>
+        <div class="services-grid">
+            <div class="service-card" onclick="openModal(this)">
+                <div class="service-icon">🔨</div>
+                <h3>ต่อตัวถังใหม่</h3>
+                <p>ผลิตและติดตั้งตัวถังรถบรรทุกใหม่ตามแบบและสเปคที่ลูกค้าต้องการ</p>
+                <small style="color: #0052cc; margin-top: 10px; display: block;">👆 คลิกเพื่อดูรายละเอียด</small>
+            </div>
+            <div class="service-card" onclick="openModal(this)">
+                <div class="service-icon">🔧</div>
+                <h3>ซ่อมแซมตัวถัง</h3>
+                <p>ซ่อมแซมตัวถังที่ชำรุดหรือเสียหายเพื่อให้กลับมาใช้งานได้ปกติ</p>
+                <small style="color: #0052cc; margin-top: 10px; display: block;">👆 คลิกเพื่อดูรายละเอียด</small>
+            </div>
+            <div class="service-card" onclick="openModal(this)">
+                <div class="service-icon">🎨</div>
+                <h3>พ่นสี</h3>
+                <p>บริการพ่นสีโดยช่างที่มีทักษะสูง ให้สีสวยคงทนและ
