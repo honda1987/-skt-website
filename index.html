@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.K.T. Trailer and Truck - บริษัท เอส.เค.ที เทรลเลอร์ แอนด์ ทรัค จำกัด</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0052cc 0%, #004399 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #00cc66;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0052cc 0%, #004399 50%, #00cc66 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: white;
+            color: #0052cc;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 60px 20px;
+        }
+
+        .about {
+            background: #f9f9f9;
+        }
+
+        .about h2 {
+            color: #0052cc;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .services {
+            background: white;
+        }
+
+        .services h2 {
+            color: #0052cc;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            border: 2px solid #00cc66;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #00cc66;
+        }
+
+        .service-card h3 {
+            color: #0052cc;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .gallery {
+            background: #f9f9f9;
+        }
+
+        .gallery h2 {
+            color: #0052cc;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #0052cc, #00cc66);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .gallery-label {
+            padding: 15px;
+            text-align: center;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #0052cc 0%, #004399 100%);
+            color: white;
+        }
+
+        .contact h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #00cc66;
+        }
+
+        .contact-card h3 {
+            color: #00cc66;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .contact-card p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        .contact-card a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #003d7a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .services-grid, .gallery-grid, .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">🚚</div>
+                <span>S.K.T.</span>
+            </div>
+            <ul>
+                <li><a href="#home">หน้าแรก</a></li>
+                <li><a href="#about">เกี่ยวกับ</a></li>
+                <li><a href="#services">บริการ</a></li>
+                <li><a href="#gallery">ผลงาน</a></li>
+                <li><a href="#contact">ติดต่อ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero" id="home">
+        <div class="hero-content">
+            <h1>เอส.เค.ที เทรลเลอร์ แอนด์ ทรัค จำกัด</h1>
+            <p>บริการต่อตัวถังรถบรรทุกคุณภาพสูงระดับมืออาชีพ</p>
+            <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">ติดต่อเราวันนี้</button>
+        </div>
+    </div>
+
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>เกี่ยวกับบริษัท</h2>
+            <p style="margin-bottom: 15px;">
+                บริษัท เอส.เค.ที เทรลเลอร์ แอนด์ ทรัค จำกัด เป็นบริษัทที่มีประสบการณ์ในการต่อตัวถังรถบรรทุกและการซ่อมแซมรถบรรทุกมากว่า 10 ปี
+            </p>
+            <p style="margin-bottom: 15px;">
+                เรามีทีมช่างผู้มีความชำนาญและอุปกรณ์ที่ทันสมัย พร้อมให้บริการด้วยความเป็นมืออาชีพและมีคุณภาพสูง
+            </p>
+            <p>
+                ลูกค้าของเราอยู่ทั่วภาคเหนือและให้ความไว้วางใจในการทำงานของเรา ด้วยคุณภาพและความตรงต่อเวลา
+            </p>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2>บริการของเรา</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🔨</div>
+                <h3>ต่อตัวถังใหม่</h3>
+                <p>ผลิตและติดตั้งตัวถังรถบรรทุกใหม่ตามแบบและสเปคที่ลูกค้าต้องการ</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>ซ่อมแซมตัวถัง</h3>
+                <p>ซ่อมแซมตัวถังที่ชำรุดหรือเสียหายเพื่อให้กลับมาใช้งานได้ปกติ</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>พ่นสี</h3>
+                <p>บริการพ่นสีโดยช่างที่มีทักษะสูง ให้สีสวยคงทนและเป็นมาตรฐาน</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <h2>ผลงานของเรา</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-image">📦</div>
+                <div class="gallery-label">ตัวถังสินค้า</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">🚛</div>
+                <div class="gallery-label">ตัวถังรถบรรทุก</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">💧</div>
+                <div class="gallery-label">ตัวถังน้ำ</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">🎯</div>
+                <div class="gallery-label">ตัวถังพิเศษ</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">✨</div>
+                <div class="gallery-label">พ่นสีคุณภาพ</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">🏆</div>
+                <div class="gallery-label">ผลงานเยี่ยม</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>ติดต่อเรา</h2>
+        <div class="contact-content">
+            <div class="contact-card">
+                <h3>📞 เบอร์โทรศัพท์</h3>
+                <p>
+                    <a href="tel:0815862444">081 586 2444</a><br>
+                    <a href="tel:0559062238">055 906 238</a>
+                </p>
+                <p style="margin-top: 10px; font-size: 14px; opacity: 0.8;">ผู้ติดต่อ: คุณ ธนกฤต</p>
+            </div>
+            <div class="contact-card">
+                <h3>📍 ที่อยู่</h3>
+                <p>230 หมู่ 2 สำนัก บางระกา สำนัก<br>พิษณุโลก 65140</p>
+            </div>
+            <div class="contact-card">
+                <h3>🕐 เวลาทำการ</h3>
+                <p>จันทร์ - ศุกร์: 08:00 - 17:00<br>
+                วันเสาร์-อาทิตย์: ปิด</p>
+            </div>
+            <div class="contact-card">
+                <h3>📱 ติดตามเรา</h3>
+                <p>
+                    <a href="https://www.facebook.com/SktPhitsanulok" target="_blank">Facebook: Skt Phitsanulok</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 S.K.T. Trailer and Truck Limited. All rights reserved.</p>
+    </footer>
+</body>
+</html>
