@@ -606,6 +606,35 @@
 
         .product-showcase {
             margin: 80px 0;
+            background: linear-gradient(135deg, rgba(0, 31, 63, 0.7) 0%, rgba(0, 40, 86, 0.7) 50%, rgba(0, 61, 122, 0.7) 100%);
+            background-image: url('https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/494493453_1261185576015268_4128083563628497268_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeE0Q8WOC7bkP436up8HgqOnIhgVGQULDkEiGBUZBQsOQdKOhyU_PMzPbarOPu5QWcinmwNpUetxtqnEuoHkTWDT&_nc_ohc=-xm9cLiRfT8Q7kNvwE5ruhp&_nc_oc=AdlVuGDwp-YCPDYGv30dVChDOxs0ZH2MjZUf34ep55ATrgkuJMvNX0RSxEgSndjHadY&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=DW2Npcdo9Z4D5FXHZWEAog&oh=00_AfeOJG7mZgKo4J2l-B5ggR7yboD9lPnGMSKYqqFR2NiTgg&oe=68FA7E4F');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .product-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 31, 63, 0.75) 0%, rgba(0, 40, 86, 0.75) 50%, rgba(0, 61, 122, 0.75) 100%);
+            z-index: 0;
+        }
+
+        .product-showcase > .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-showcase h2 {
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .product-grid {
@@ -615,6 +644,8 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 2;
         }
 
         .product-card {
