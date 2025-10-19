@@ -295,7 +295,35 @@
             line-height: 1.7;
         }
 
-        /* Gallery Section */
+        /* Video Section */
+        .video-section {
+            background: white;
+            padding: 80px 30px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .video-item {
+            background: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .video-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-item iframe {
+            border-radius: 12px;
+        }
         .gallery {
             background: var(--light);
         }
@@ -644,6 +672,21 @@
         </div>
     </section>
 
+    <section class="video-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">วิดีโอ</div>
+                <h2 class="section-title">ดูงานของเรา</h2>
+                <p class="section-subtitle">วิดีโอการทำงานและผลงานจากหน้า Facebook ของเรา</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-item">
+                    <iframe width="100%" height="400" src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F761211393178195&show_text=false" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="gallery" id="gallery">
         <div class="container">
             <div class="section-header">
@@ -703,15 +746,21 @@
             <div class="contact-grid">
                 <div class="contact-card">
                     <h3>📞 โทรศัพท์</h3>
-                    <p><a href="tel:+66">+66 (ติดต่อเพื่อทราบเบอร์)</a></p>
+                    <p><a href="tel:0559906238">055 990 6238</a></p>
+                    <p style="margin-top: 12px; font-size: 14px; opacity: 0.8;">ฝ่ายขาย: <a href="tel:0982842112" style="color: var(--secondary);">098 284 2112</a></p>
+                    <p style="margin-top: 8px; font-size: 14px; opacity: 0.8;">ฝ่ายชาย: <a href="tel:0815862444" style="color: var(--secondary);">081 586 2444</a></p>
                 </div>
                 <div class="contact-card">
                     <h3>📧 อีเมล</h3>
-                    <p><a href="mailto:info@skt.co.th">info@skt.co.th</a></p>
+                    <p><a href="mailto:skt.trailer.sale@gmail.com">skt.trailer.sale@gmail.com</a></p>
                 </div>
                 <div class="contact-card">
                     <h3>📍 ที่อยู่</h3>
-                    <p>ภาคเหนือ ประเทศไทย</p>
+                    <p>230 หมู่ 2 ตำบล บางระกำ อำเภอ บางระกำ พิษณุโลก 65140</p>
+                </div>
+                <div class="contact-card">
+                    <h3>📱 Facebook</h3>
+                    <p><a href="https://facebook.com/s.k.t.trailer.and.truck" target="_blank" style="color: var(--secondary);">s.k.t.trailer.and.truck</a></p>
                 </div>
             </div>
         </div>
