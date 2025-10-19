@@ -324,6 +324,89 @@
         .video-item iframe {
             border-radius: 12px;
         }
+
+        .video-item-wrapper {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+        }
+
+        .video-play-btn {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 204, 102, 0.4);
+        }
+
+        .video-play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 204, 102, 0.6);
+        }
+
+        /* Modal Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.2);
+        }
         .gallery {
             background: var(--light);
         }
@@ -654,17 +737,38 @@
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">🏗️</div>
+                    <div class="service-icon">
+                        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M35 10L45 25H25L35 10Z" fill="#FF9500" stroke="#FF6B00" stroke-width="2"/>
+                            <rect x="15" y="30" width="40" height="30" fill="#FF9500" stroke="#FF6B00" stroke-width="2" rx="3"/>
+                            <circle cx="25" cy="55" r="5" fill="#FFD700"/>
+                            <circle cx="45" cy="55" r="5" fill="#FFD700"/>
+                        </svg>
+                    </div>
                     <h3>ต่อตัวถังใหม่</h3>
                     <p>ผลิตและติดตั้งตัวถังรถบรรทุกใหม่ตามแบบและสเปคที่ลูกค้าต้องการ ด้วยความแม่นยำ</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🔧</div>
+                    <div class="service-icon">
+                        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 50L25 25L35 20L45 25L50 50" fill="#5B9BD5" stroke="#0052CC" stroke-width="2"/>
+                            <path d="M30 35L40 35M32 42L38 42" stroke="#0052CC" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
                     <h3>ซ่อมแซมตัวถัง</h3>
                     <p>ซ่อมแซมตัวถังที่ชำรุดหรือเสียหายให้กลับมาใช้งานได้ปกติ และทนทาน</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🎨</div>
+                    <div class="service-icon">
+                        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="35" cy="30" r="12" fill="#E8A87C" stroke="#D2691E" stroke-width="2"/>
+                            <circle cx="25" cy="20" r="3" fill="#FF1493"/>
+                            <circle cx="40" cy="18" r="3" fill="#FFD700"/>
+                            <circle cx="45" cy="28" r="3" fill="#00CED1"/>
+                            <circle cx="30" cy="42" r="3" fill="#32CD32"/>
+                            <path d="M35 42L35 55" stroke="#D2691E" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
                     <h3>พ่นสีอย่างมืออาชีพ</h3>
                     <p>บริการพ่นสีโดยช่างที่มีทักษะสูง ให้สีสวยคงทนและเป็นมืออาชีพ</p>
                 </div>
@@ -681,7 +785,10 @@
             </div>
             <div class="video-grid">
                 <div class="video-item">
-                    <iframe width="100%" height="400" src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F761211393178195&show_text=false" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                    <div class="video-item-wrapper" onclick="openVideoModal()">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/5SDgcdeycZU/maxresdefault.jpg" alt="วิดีโอ SKT">
+                        <div class="video-play-btn">▶</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -770,6 +877,14 @@
         <p>&copy; 2024 S.K.T. Trailer and Truck. สงวนสิทธิ์ทั้งหมด</p>
     </footer>
 
+    <!-- Video Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeVideoModal()">✕</button>
+            <iframe width="100%" height="600" id="videoFrame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+
     <script>
         const galleryImages = [
             'https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/558918247_1409706854496472_5640967511085873149_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFKEkvPrvigB8UCk3pCOKk6vXyMS-wtmh69fIxL7C2aHtiqMRyCWVa790YHnVD25uu6FatmRGWNyWH5wO8tfrK8&_nc_ohc=2Ds_dy0LbaMQ7kNvwFsUrCE&_nc_oc=AdmR63Aa3duYCll-_OTQrYiWKisdcVP6W5xRlG9cy7ey6R8KEXC7N9iMXut_pvFvWS8&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=PsTfn3dcMuO_LM0ZlcS6Mg&oh=00_AfeV1_qHeoB0K2TyPS1b2Zo0H-XfId-NchXqzBHkBGlf3A&oe=68FA7434',
@@ -782,6 +897,39 @@
         ];
 
         let currentIndex = 0;
+
+        function openVideoModal() {
+            document.getElementById('videoModal').classList.add('active');
+            document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/5SDgcdeycZU?autoplay=1';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            document.getElementById('videoModal').classList.remove('active');
+            document.getElementById('videoFrame').src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // ปิด modal เมื่อคลิกพื้นหลัง
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target.id === 'videoModal') {
+                closeVideoModal();
+            }
+        });
+
+        // ปิดเมื่อกด Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+
+        // เล่นวิดีโออัตโนมัติเมื่อเปิดเข้าเวบ
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                openVideoModal();
+            }, 1000);
+        });
 
         function openLightbox(index) {
             currentIndex = index;
