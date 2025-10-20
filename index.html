@@ -295,7 +295,118 @@
             line-height: 1.7;
         }
 
-        /* Gallery Section */
+        /* Video Section */
+        .video-section {
+            background: white;
+            padding: 80px 30px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .video-item {
+            background: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .video-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-item iframe {
+            border-radius: 12px;
+        }
+
+        .video-item-wrapper {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+        }
+
+        .video-play-btn {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 204, 102, 0.4);
+        }
+
+        .video-play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 204, 102, 0.6);
+        }
+
+        /* Modal Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.2);
+        }
         .gallery {
             background: var(--light);
         }
@@ -354,6 +465,19 @@
             opacity: 1;
         }
 
+        .gallery-label {
+            padding: 20px;
+            text-align: center;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .gallery-item:hover .gallery-label {
+            background: var(--primary);
+            color: white;
+        }
+
         /* Lightbox */
         .lightbox {
             display: none;
@@ -410,6 +534,18 @@
         .lightbox-close:hover {
             background: rgba(0, 0, 0, 0.8);
             transform: scale(1.1);
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 25px;
         }
 
         @keyframes fadeIn {
@@ -478,44 +614,6 @@
 
         .contact-card a:hover {
             color: var(--secondary);
-        }
-
-        /* Social Section */
-        .social-section {
-            margin-top: 80px;
-            text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .social-section h3 {
-            color: white;
-            font-size: 24px;
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .social-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            padding: 15px 30px;
-            border: 2px solid var(--secondary);
-            border-radius: 8px;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
-
-        .social-links a:hover {
-            background: var(--secondary);
-            color: #0f172a;
         }
 
         /* Footer */
@@ -635,25 +733,62 @@
         <div class="container">
             <div class="section-header">
                 <div class="section-label">บริการ</div>
-                <h2 class="section-title">บริการของเรา</h2>
-                <p class="section-subtitle">เรามีบริการครบครันสำหรับความต้องการของคุณ</p>
+                <h2 class="section-title">สิ่งที่เราให้บริการ</h2>
             </div>
-
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">🚚</div>
+                    <div class="service-icon">
+                        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M35 10L45 25H25L35 10Z" fill="#FF9500" stroke="#FF6B00" stroke-width="2"/>
+                            <rect x="15" y="30" width="40" height="30" fill="#FF9500" stroke="#FF6B00" stroke-width="2" rx="3"/>
+                            <circle cx="25" cy="55" r="5" fill="#FFD700"/>
+                            <circle cx="45" cy="55" r="5" fill="#FFD700"/>
+                        </svg>
+                    </div>
                     <h3>ต่อตัวถังใหม่</h3>
-                    <p>บริการต่อตัวถังรถบรรทุกแบบใหม่ด้วยคุณภาพสูงและช่างมืออาชีพ</p>
+                    <p>ผลิตและติดตั้งตัวถังรถบรรทุกใหม่ตามแบบและสเปคที่ลูกค้าต้องการ ด้วยความแม่นยำ</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🔧</div>
-                    <h3>ซ่อมแซม</h3>
-                    <p>ซ่อมแซมตัวถังรถบรรทุกจากความเสียหาย ด้วยคุณภาพสูง</p>
+                    <div class="service-icon">
+                        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 50L25 25L35 20L45 25L50 50" fill="#5B9BD5" stroke="#0052CC" stroke-width="2"/>
+                            <path d="M30 35L40 35M32 42L38 42" stroke="#0052CC" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>ซ่อมแซมตัวถัง</h3>
+                    <p>ซ่อมแซมตัวถังที่ชำรุดหรือเสียหายให้กลับมาใช้งานได้ปกติ และทนทาน</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🎨</div>
+                    <div class="service-icon">
+                        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="35" cy="30" r="12" fill="#E8A87C" stroke="#D2691E" stroke-width="2"/>
+                            <circle cx="25" cy="20" r="3" fill="#FF1493"/>
+                            <circle cx="40" cy="18" r="3" fill="#FFD700"/>
+                            <circle cx="45" cy="28" r="3" fill="#00CED1"/>
+                            <circle cx="30" cy="42" r="3" fill="#32CD32"/>
+                            <path d="M35 42L35 55" stroke="#D2691E" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
                     <h3>พ่นสีอย่างมืออาชีพ</h3>
-                    <p>พ่นสีด้วยอุปกรณ์ทันสมัยและสีคุณภาพสูง จบขึ้นนวล</p>
+                    <p>บริการพ่นสีโดยช่างที่มีทักษะสูง ให้สีสวยคงทนและเป็นมืออาชีพ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="video-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">วิดีโอ</div>
+                <h2 class="section-title">ดูงานของเรา</h2>
+                <p class="section-subtitle">วิดีโอการทำงานและผลงานจากหน้า Facebook ของเรา</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-item">
+                    <div class="video-item-wrapper" onclick="openVideoModal()">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/5SDgcdeycZU/maxresdefault.jpg" alt="วิดีโอ SKT">
+                        <div class="video-play-btn">▶</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -661,118 +796,162 @@
 
     <section class="gallery" id="gallery">
         <div class="container">
-
+            <div class="section-header">
+                <div class="section-label">ผลงาน</div>
+                <h2 class="section-title">ความสำเร็จของเรา</h2>
+                <p class="section-subtitle">คลิกที่ภาพเพื่อดูขนาดใหญ่</p>
+            </div>
             <div class="gallery-grid">
                 <div class="gallery-item" onclick="openLightbox(0)">
-                    <div class="gallery-image">
-                        <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/494493453_1261185576015268_4128083563628497268_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHPjZI78jubjtfCsAuf5GIXIhgVGQULDkEiGBUZBQsOQTxI0bHj0rT5XQPKKML4YjaLhlZD41a1VvH-p_QyiTmr&_nc_ohc=-xm9cLiRfT8Q7kNvwE5ruhp&_nc_oc=AdlVuGDwp-YCPDYGv30dVChDOxs0ZH2MjZUf34ep55ATrgkuJMvNX0RSxEgSndjHadY&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=8DTwjourSM3kRAOtffqYDA&oh=00_AfcHQVtZ9VZmIIqkKiwosJyomOd1Z_UFe3YMYB-NW4g-zA&oe=68FA7E4F" alt="ผลงาน">
-                    </div>
+                    <div class="gallery-image"><img src="https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/558918247_1409706854496472_5640967511085873149_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFKEkvPrvigB8UCk3pCOKk6vXyMS-wtmh69fIxL7C2aHtiqMRyCWVa790YHnVD25uu6FatmRGWNyWH5wO8tfrK8&_nc_ohc=2Ds_dy0LbaMQ7kNvwFsUrCE&_nc_oc=AdmR63Aa3duYCll-_OTQrYiWKisdcVP6W5xRlG9cy7ey6R8KEXC7N9iMXut_pvFvWS8&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=PsTfn3dcMuO_LM0ZlcS6Mg&oh=00_AfeV1_qHeoB0K2TyPS1b2Zo0H-XfId-NchXqzBHkBGlf3A&oe=68FA7434" alt="ผลงาน"></div>
+                    <div class="gallery-label">ผลงานล่าสุด</div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(1)">
-                    <div class="gallery-image">
-                        <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/494493453_1261185576015268_4128083563628497268_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHPjZI78jubjtfCsAuf5GIXIhgVGQULDkEiGBUZBQsOQTxI0bHj0rT5XQPKKML4YjaLhlZD41a1VvH-p_QyiTmr&_nc_ohc=-xm9cLiRfT8Q7kNvwE5ruhp&_nc_oc=AdlVuGDwp-YCPDYGv30dVChDOxs0ZH2MjZUf34ep55ATrgkuJMvNX0RSxEgSndjHadY&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=8DTwjourSM3kRAOtffqYDA&oh=00_AfcHQVtZ9VZmIIqkKiwosJyomOd1Z_UFe3YMYB-NW4g-zA&oe=68FA7E4F" alt="ผลงาน">
-                    </div>
+                    <div class="gallery-image"><img src="https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/555572878_1397589912374833_1910455434371989110_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeF-jwk0VBsvVkvQzGT3rvITsFvUSdTAi22wW9RJ1MCLbcSovEpk8Qyv2owXyZkWAsmUZ5ox5hVZaBfTlL8oVdGf&_nc_ohc=OlNfvTaJ_xAQ7kNvwFTRSX_&_nc_oc=Adl_4e-QlitWsA9bRWxLujeVxDJ0XpeZ5q1wPb1AEMr_f_EVknJORrAUyY03BJAhj8c&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=uaivpvEKej_U1t10nxqKvw&oh=00_AfftK2VP4xlEMyTeONL112t3e_nAm-hxJFyFQZ0KewxPfg&oe=68FA8C8D" alt="ผลงาน"></div>
+                    <div class="gallery-label">ผลงานซ่อมแซม</div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(2)">
-                    <div class="gallery-image">
-                        <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/494493453_1261185576015268_4128083563628497268_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHPjZI78jubjtfCsAuf5GIXIhgVGQULDkEiGBUZBQsOQTxI0bHj0rT5XQPKKML4YjaLhlZD41a1VvH-p_QyiTmr&_nc_ohc=-xm9cLiRfT8Q7kNvwE5ruhp&_nc_oc=AdlVuGDwp-YCPDYGv30dVChDOxs0ZH2MjZUf34ep55ATrgkuJMvNX0RSxEgSndjHadY&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=8DTwjourSM3kRAOtffqYDA&oh=00_AfcHQVtZ9VZmIIqkKiwosJyomOd1Z_UFe3YMYB-NW4g-zA&oe=68FA7E4F" alt="ผลงาน">
-                    </div>
+                    <div class="gallery-image"><img src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t39.30808-6/548691399_1387347466732411_7599477218070043036_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFBVnpi4lfARQ1W3XtXCv_YmVd0UgJqMwmZV3RSAmozCQX_Wt5T2AzozVRaiRYMik5YGUaU8BWiDPsDuEVNNf3s&_nc_ohc=dbB8tYtnO4MQ7kNvwHlEsQf&_nc_oc=Adm5ygi8CybgxKXXfBLmd0JJ4UYAl-zaLyPCcjYuLG2GNiUyOCLJ5uM035sqNV-Roys&_nc_zt=23&_nc_ht=scontent.fbkk22-6.fna&_nc_gid=WOterz4EExXLhTdssqU6Jg&oh=00_AfcWlxl7x40YT-iL-e8X5DKGDBYjfFomQIYuDcSQ730ZHA&oe=68FA7ECB" alt="ผลงาน"></div>
+                    <div class="gallery-label">ผลงานต่อตัวถัง</div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(3)">
-                    <div class="gallery-image">
-                        <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/494493453_1261185576015268_4128083563628497268_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHPjZI78jubjtfCsAuf5GIXIhgVGQULDkEiGBUZBQsOQTxI0bHj0rT5XQPKKML4YjaLhlZD41a1VvH-p_QyiTmr&_nc_ohc=-xm9cLiRfT8Q7kNvwE5ruhp&_nc_oc=AdlVuGDwp-YCPDYGv30dVChDOxs0ZH2MjZUf34ep55ATrgkuJMvNX0RSxEgSndjHadY&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=8DTwjourSM3kRAOtffqYDA&oh=00_AfcHQVtZ9VZmIIqkKiwosJyomOd1Z_UFe3YMYB-NW4g-zA&oe=68FA7E4F" alt="ผลงาน">
-                    </div>
+                    <div class="gallery-image"><img src="https://scontent.fbkk22-7.fna.fbcdn.net/v/t39.30808-6/547415666_1382449493888875_3964008984652421989_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGSLso_HbSyu7x5cYhdOb-xQGdn_CUYBoFAZ2f8JRgGgbt1_elfAJc3PCpoubW0mIBTB8thGVy-Q9oYT2XSjKLG&_nc_ohc=DOUkerJidaIQ7kNvwF2zksq&_nc_oc=AdllzcDLVSvQTMboGBPJ1IOl1cLC6ewjV_BTE6r6EtA49uM5koxE_vVgJJapZ8d48e4&_nc_zt=23&_nc_ht=scontent.fbkk22-7.fna&_nc_gid=Skif-qbfKC-MS57BOJ-UGA&oh=00_Afe9E-4x_BIJcNtYyUhsleO6r1998QZaRmi8MKK0FVb4Zw&oe=68FA7D32" alt="ผลงาน"></div>
+                    <div class="gallery-label">ผลงานพ่นสี</div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(4)">
-                    <div class="gallery-image">
-                        <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/494493453_1261185576015268_4128083563628497268_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHPjZI78jubjtfCsAuf5GIXIhgVGQULDkEiGBUZBQsOQTxI0bHj0rT5XQPKKML4YjaLhlZD41a1VvH-p_QyiTmr&_nc_ohc=-xm9cLiRfT8Q7kNvwE5ruhp&_nc_oc=AdlVuGDwp-YCPDYGv30dVChDOxs0ZH2MjZUf34ep55ATrgkuJMvNX0RSxEgSndjHadY&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=8DTwjourSM3kRAOtffqYDA&oh=00_AfcHQVtZ9VZmIIqkKiwosJyomOd1Z_UFe3YMYB-NW4g-zA&oe=68FA7E4F" alt="ผลงาน">
-                    </div>
+                    <div class="gallery-image"><img src="https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/544802635_1377776727689485_877200225706810811_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH-MJHCDwUpbRL1C4s7SnysjqYCVpygISuOpgJWnKAhK4e0TSBWZjZF-ojzF6ADI-dXFJ86n-UDS-tt5A292l8E&_nc_ohc=yRlIanKgQPkQ7kNvwEXwSqr&_nc_oc=AdnCq69di2z3dMlRnWz4Dte1be5QYa-WN_1kL_SBZswTG-0e_6oFx-VKSAmYM4x5lZ4&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=ghKdGeWY11qYhUeVOvLVAQ&oh=00_Afemw8gks0Isd2UYZ9-FvgSKEAPo7sIsbmEvx3qXewi1rg&oe=68FAA080" alt="ผลงาน"></div>
+                    <div class="gallery-label">ผลงานบำรุงรักษา</div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(5)">
-                    <div class="gallery-image">
-                        <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/494493453_1261185576015268_4128083563628497268_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHPjZI78jubjtfCsAuf5GIXIhgVGQULDkEiGBUZBQsOQTxI0bHj0rT5XQPKKML4YjaLhlZD41a1VvH-p_QyiTmr&_nc_ohc=-xm9cLiRfT8Q7kNvwE5ruhp&_nc_oc=AdlVuGDwp-YCPDYGv30dVChDOxs0ZH2MjZUf34ep55ATrgkuJMvNX0RSxEgSndjHadY&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=8DTwjourSM3kRAOtffqYDA&oh=00_AfcHQVtZ9VZmIIqkKiwosJyomOd1Z_UFe3YMYB-NW4g-zA&oe=68FA7E4F" alt="ผลงาน">
-                    </div>
+                    <div class="gallery-image"><img src="https://scontent.fbkk22-7.fna.fbcdn.net/v/t39.30808-6/536278950_1374066151393876_3522617493189554074_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHPSKY6LggJZv9To1YaJxPOzD0WsY2kYrbMPRaxjaRitinjavs5OCzo-4hlnVLArijCJCVMUp-RipBReIf37JFo&_nc_ohc=Sp4HCJDP_AsQ7kNvwEJ-GaY&_nc_oc=AdnPdo8aYEUpUpJsN77PRpk8EY0R3zkbVSBkoMyVZKb1gCJiRoZSwe7sIm2dqMsM09Y&_nc_zt=23&_nc_ht=scontent.fbkk22-7.fna&_nc_gid=SdlVCp9pPO29SFDEtX1-Kw&oh=00_AfdpAxvhtvDF4DszH8VD6HzNguT1MWbAfK_LA5yCideL1A&oe=68FA84CF" alt="ผลงาน"></div>
+                    <div class="gallery-label">ผลงานซ่อมโครงสร้าง</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(6)">
+                    <div class="gallery-image"><img src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t39.30808-6/540723869_1372963878170770_6950951731331033065_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGxWWIwgfsY-meUBPGkieBEIuFrgB5l9N0i4WuAHmX03f97AWECzgMpjO8cYKbY_6KLHlpaz1z2jGFJHdN7wquu&_nc_ohc=00-nillhRcoQ7kNvwFk4HED&_nc_oc=AdnR-JGD2geg1xhPWVeK5TV1XGlbPCvKWPsXGMp0jw1_g2LPqJERAKVpm-hUdxo3Qq0&_nc_zt=23&_nc_ht=scontent.fbkk22-6.fna&_nc_gid=cUiyhs7lKxg_mBbUqZP-JQ&oh=00_Afeb_KTp2PanUbZjG-5bXtcjol6mJbtNJImcD8BOBEwX2A&oe=68FA9DF7" alt="ผลงาน"></div>
+                    <div class="gallery-label">ผลงานตัวถังใหม่</div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+            <img class="lightbox-image" id="lightboxImage" src="" alt="ภาพขนาดใหญ่">
+            <div class="lightbox-counter"><span id="currentImg">1</span> / <span id="totalImg">7</span></div>
+        </div>
+    </div>
+
     <section class="contact" id="contact">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">ติดต่อ</div>
-                <h2 class="section-title">ติดต่อเรา</h2>
-                <p class="section-subtitle">เราพร้อมให้บริการและตอบข้อมูลของคุณทุกเวลา</p>
+                <div class="section-label" style="color: var(--secondary);">ติดต่อเรา</div>
+                <h2 class="section-title">เราพร้อมที่จะช่วยเหลือ</h2>
+                <p class="section-subtitle">ติดต่อเราได้ตลอดเวลา เราจะตอบสนองอย่างรวดเร็ว</p>
             </div>
-
             <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>📞 โทรศัพท์</h3>
+                    <p><a href="tel:0559906238">055 990 6238</a></p>
+                    <p style="margin-top: 12px; font-size: 14px; opacity: 0.8;">ฝ่ายขาย: <a href="tel:0982842112" style="color: var(--secondary);">098 284 2112</a></p>
+                    <p style="margin-top: 8px; font-size: 14px; opacity: 0.8;">ฝ่ายขาย: <a href="tel:0815862444" style="color: var(--secondary);">081 586 2444</a></p>
+                </div>
+                <div class="contact-card">
+                    <h3>📧 อีเมล</h3>
+                    <p><a href="mailto:skt.trailer.sale@gmail.com">skt.trailer.sale@gmail.com</a></p>
+                </div>
                 <div class="contact-card">
                     <h3>📍 ที่อยู่</h3>
                     <p>230 หมู่ 2 ตำบล บางระกำ อำเภอ บางระกำ พิษณุโลก 65140</p>
                 </div>
                 <div class="contact-card">
-                    <h3>📞 ฝ่ายขาย</h3>
-                    <p><a href="tel:0815862444">081 586 2444</a></p>
-                </div>
-                <div class="contact-card">
-                    <h3>📱 อื่นๆ</h3>
-                    <p><a href="tel:0559906238">055 906 238</a></p>
-                </div>
-            </div>
-
-            <div class="social-section">
-                <h3>ติดตามเรา</h3>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/share/1VtXfFCfDj/" target="_blank">📘 Facebook</a>
-                    <a href="https://www.tiktok.com/@s.k.t.trailer.and.truck" target="_blank">🎵 TikTok</a>
+                    <h3>📱 Facebook</h3>
+                    <p><a href="https://facebook.com/s.k.t.trailer.and.truck" target="_blank" style="color: var(--secondary);">s.k.t.trailer.and.truck</a></p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 S.K.T. Trailer and Truck. สงวนลิขสิทธิ์ทั้งหมด</p>
+        <p>&copy; 2024 S.K.T. Trailer and Truck. สงวนสิทธิ์ทั้งหมด</p>
     </footer>
 
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-            <img class="lightbox-image" id="lightbox-image" src="" alt="">
+    <!-- Video Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeVideoModal()">✕</button>
+            <iframe width="100%" height="600" id="videoFrame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
 
     <script>
         const galleryImages = [
-            "https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/494493453_1261185576015268_4128083563628497268_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHPjZI78jubjtfCsAuf5GIXIhgVGQULDkEiGBUZBQsOQTxI0bHj0rT5XQPKKML4YjaLhlZD41a1VvH-p_QyiTmr&_nc_ohc=-xm9cLiRfT8Q7kNvwE5ruhp&_nc_oc=AdlVuGDwp-YCPDYGv30dVChDOxs0ZH2MjZUf34ep55ATrgkuJMvNX0RSxEgSndjHadY&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=8DTwjourSM3kRAOtffqYDA&oh=00_AfcHQVtZ9VZmIIqkKiwosJyomOd1Z_UFe3YMYB-NW4g-zA&oe=68FA7E4F",
-            "https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/494493453_1261185576015268_4128083563628497268_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHPjZI78jubjtfCsAuf5GIXIhgVGQULDkEiGBUZBQsOQTxI0bHj0rT5XQPKKML4YjaLhlZD41a1VvH-p_QyiTmr&_nc_ohc=-xm9cLiRfT8Q7kNvwE5ruhp&_nc_oc=AdlVuGDwp-YCPDYGv30dVChDOxs0ZH2MjZUf34ep55ATrgkuJMvNX0RSxEgSndjHadY&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=8DTwjourSM3kRAOtffqYDA&oh=00_AfcHQVtZ9VZmIIqkKiwosJyomOd1Z_UFe3YMYB-NW4g-zA&oe=68FA7E4F",
-            "https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/494493453_1261185576015268_4128083563628497268_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHPjZI78jubjtfCsAuf5GIXIhgVGQULDkEiGBUZBQsOQTxI0bHj0rT5XQPKKML4YjaLhlZD41a1VvH-p_QyiTmr&_nc_ohc=-xm9cLiRfT8Q7kNvwE5ruhp&_nc_oc=AdlVuGDwp-YCPDYGv30dVChDOxs0ZH2MjZUf34ep55ATrgkuJMvNX0RSxEgSndjHadY&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=8DTwjourSM3kRAOtffqYDA&oh=00_AfcHQVtZ9VZmIIqkKiwosJyomOd1Z_UFe3YMYB-NW4g-zA&oe=68FA7E4F",
-            "https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/494493453_1261185576015268_4128083563628497268_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHPjZI78jubjtfCsAuf5GIXIhgVGQULDkEiGBUZBQsOQTxI0bHj0rT5XQPKKML4YjaLhlZD41a1VvH-p_QyiTmr&_nc_ohc=-xm9cLiRfT8Q7kNvwE5ruhp&_nc_oc=AdlVuGDwp-YCPDYGv30dVChDOxs0ZH2MjZUf34ep55ATrgkuJMvNX0RSxEgSndjHadY&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=8DTwjourSM3kRAOtffqYDA&oh=00_AfcHQVtZ9VZmIIqkKiwosJyomOd1Z_UFe3YMYB-NW4g-zA&oe=68FA7E4F",
-            "https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/494493453_1261185576015268_4128083563628497268_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHPjZI78jubjtfCsAuf5GIXIhgVGQULDkEiGBUZBQsOQTxI0bHj0rT5XQPKKML4YjaLhlZD41a1VvH-p_QyiTmr&_nc_ohc=-xm9cLiRfT8Q7kNvwE5ruhp&_nc_oc=AdlVuGDwp-YCPDYGv30dVChDOxs0ZH2MjZUf34ep55ATrgkuJMvNX0RSxEgSndjHadY&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=8DTwjourSM3kRAOtffqYDA&oh=00_AfcHQVtZ9VZmIIqkKiwosJyomOd1Z_UFe3YMYB-NW4g-zA&oe=68FA7E4F",
-            "https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/494493453_1261185576015268_4128083563628497268_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHPjZI78jubjtfCsAuf5GIXIhgVGQULDkEiGBUZBQsOQTxI0bHj0rT5XQPKKML4YjaLhlZD41a1VvH-p_QyiTmr&_nc_ohc=-xm9cLiRfT8Q7kNvwE5ruhp&_nc_oc=AdlVuGDwp-YCPDYGv30dVChDOxs0ZH2MjZUf34ep55ATrgkuJMvNX0RSxEgSndjHadY&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=8DTwjourSM3kRAOtffqYDA&oh=00_AfcHQVtZ9VZmIIqkKiwosJyomOd1Z_UFe3YMYB-NW4g-zA&oe=68FA7E4F"
+            'https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/558918247_1409706854496472_5640967511085873149_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFKEkvPrvigB8UCk3pCOKk6vXyMS-wtmh69fIxL7C2aHtiqMRyCWVa790YHnVD25uu6FatmRGWNyWH5wO8tfrK8&_nc_ohc=2Ds_dy0LbaMQ7kNvwFsUrCE&_nc_oc=AdmR63Aa3duYCll-_OTQrYiWKisdcVP6W5xRlG9cy7ey6R8KEXC7N9iMXut_pvFvWS8&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=PsTfn3dcMuO_LM0ZlcS6Mg&oh=00_AfeV1_qHeoB0K2TyPS1b2Zo0H-XfId-NchXqzBHkBGlf3A&oe=68FA7434',
+            'https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/555572878_1397589912374833_1910455434371989110_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeF-jwk0VBsvVkvQzGT3rvITsFvUSdTAi22wW9RJ1MCLbcSovEpk8Qyv2owXyZkWAsmUZ5ox5hVZaBfTlL8oVdGf&_nc_ohc=OlNfvTaJ_xAQ7kNvwFTRSX_&_nc_oc=Adl_4e-QlitWsA9bRWxLujeVxDJ0XpeZ5q1wPb1AEMr_f_EVknJORrAUyY03BJAhj8c&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=uaivpvEKej_U1t10nxqKvw&oh=00_AfftK2VP4xlEMyTeONL112t3e_nAm-hxJFyFQZ0KewxPfg&oe=68FA8C8D',
+            'https://scontent.fbkk22-6.fna.fbcdn.net/v/t39.30808-6/548691399_1387347466732411_7599477218070043036_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFBVnpi4lfARQ1W3XtXCv_YmVd0UgJqMwmZV3RSAmozCQX_Wt5T2AzozVRaiRYMik5YGUaU8BWiDPsDuEVNNf3s&_nc_ohc=dbB8tYtnO4MQ7kNvwHlEsQf&_nc_oc=Adm5ygi8CybgxKXXfBLmd0JJ4UYAl-zaLyPCcjYuLG2GNiUyOCLJ5uM035sqNV-Roys&_nc_zt=23&_nc_ht=scontent.fbkk22-6.fna&_nc_gid=WOterz4EExXLhTdssqU6Jg&oh=00_AfcWlxl7x40YT-iL-e8X5DKGDBYjfFomQIYuDcSQ730ZHA&oe=68FA7ECB',
+            'https://scontent.fbkk22-7.fna.fbcdn.net/v/t39.30808-6/547415666_1382449493888875_3964008984652421989_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGSLso_HbSyu7x5cYhdOb-xQGdn_CUYBoFAZ2f8JRgGgbt1_elfAJc3PCpoubW0mIBTB8thGVy-Q9oYT2XSjKLG&_nc_ohc=DOUkerJidaIQ7kNvwF2zksq&_nc_oc=AdllzcDLVSvQTMboGBPJ1IOl1cLC6ewjV_BTE6r6EtA49uM5koxE_vVgJJapZ8d48e4&_nc_zt=23&_nc_ht=scontent.fbkk22-7.fna&_nc_gid=Skif-qbfKC-MS57BOJ-UGA&oh=00_Afe9E-4x_BIJcNtYyUhsleO6r1998QZaRmi8MKK0FVb4Zw&oe=68FA7D32',
+            'https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/544802635_1377776727689485_877200225706810811_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH-MJHCDwUpbRL1C4s7SnysjqYCVpygISuOpgJWnKAhK4e0TSBWZjZF-ojzF6ADI-dXFJ86n-UDS-tt5A292l8E&_nc_ohc=yRlIanKgQPkQ7kNvwEXwSqr&_nc_oc=AdnCq69di2z3dMlRnWz4Dte1be5QYa-WN_1kL_SBZswTG-0e_6oFx-VKSAmYM4x5lZ4&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=ghKdGeWY11qYhUeVOvLVAQ&oh=00_Afemw8gks0Isd2UYZ9-FvgSKEAPo7sIsbmEvx3qXewi1rg&oe=68FAA080',
+            'https://scontent.fbkk22-7.fna.fbcdn.net/v/t39.30808-6/536278950_1374066151393876_3522617493189554074_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHPSKY6LggJZv9To1YaJxPOzD0WsY2kYrbMPRaxjaRitinjavs5OCzo-4hlnVLArijCJCVMUp-RipBReIf37JFo&_nc_ohc=Sp4HCJDP_AsQ7kNvwEJ-GaY&_nc_oc=AdnPdo8aYEUpUpJsN77PRpk8EY0R3zkbVSBkoMyVZKb1gCJiRoZSwe7sIm2dqMsM09Y&_nc_zt=23&_nc_ht=scontent.fbkk22-7.fna&_nc_gid=SdlVCp9pPO29SFDEtX1-Kw&oh=00_AfdpAxvhtvDF4DszH8VD6HzNguT1MWbAfK_LA5yCideL1A&oe=68FA84CF',
+            'https://scontent.fbkk22-6.fna.fbcdn.net/v/t39.30808-6/540723869_1372963878170770_6950951731331033065_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGxWWIwgfsY-meUBPGkieBEIuFrgB5l9N0i4WuAHmX03f97AWECzgMpjO8cYKbY_6KLHlpaz1z2jGFJHdN7wquu&_nc_ohc=00-nillhRcoQ7kNvwFk4HED&_nc_oc=AdnR-JGD2geg1xhPWVeK5TV1XGlbPCvKWPsXGMp0jw1_g2LPqJERAKVpm-hUdxo3Qq0&_nc_zt=23&_nc_ht=scontent.fbkk22-6.fna&_nc_gid=cUiyhs7lKxg_mBbUqZP-JQ&oh=00_Afeb_KTp2PanUbZjG-5bXtcjol6mJbtNJImcD8BOBEwX2A&oe=68FA9DF7'
         ];
 
+        let currentIndex = 0;
+
+        function openVideoModal() {
+            document.getElementById('videoModal').classList.add('active');
+            document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/5SDgcdeycZU?autoplay=1';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            document.getElementById('videoModal').classList.remove('active');
+            document.getElementById('videoFrame').src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // ปิด modal เมื่อคลิกพื้นหลัง
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target.id === 'videoModal') {
+                closeVideoModal();
+            }
+        });
+
+        // ปิดเมื่อกด Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+
+        // เล่นวิดีโออัตโนมัติเมื่อเปิดเข้าเวบ
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                openVideoModal();
+            }, 1000);
+        });
+
         function openLightbox(index) {
-            const lightbox = document.getElementById('lightbox');
-            const image = document.getElementById('lightbox-image');
-            image.src = galleryImages[index];
-            lightbox.classList.add('active');
+            currentIndex = index;
+            document.getElementById('lightbox').classList.add('active');
+            document.getElementById('lightboxImage').src = galleryImages[currentIndex];
+            document.getElementById('currentImg').textContent = currentIndex + 1;
             document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
+            document.getElementById('lightbox').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        // Close lightbox when clicking outside the image
+        // ปิด lightbox เมื่อคลิกพื้นหลัง
         document.getElementById('lightbox').addEventListener('click', function(e) {
-            if (e.target === this) {
+            if (e.target.id === 'lightbox') {
                 closeLightbox();
             }
         });
 
-        // Close lightbox with Escape key
+        // ปิดเมื่อกด Escape
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeLightbox();
