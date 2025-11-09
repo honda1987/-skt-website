@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>S.K.T. Trailer and Truck - บริษัท เอส.เค.ที</title>
     <style>
         * {
@@ -407,6 +410,8 @@
         .modal-close:hover {
             transform: scale(1.2);
         }
+
+        /* Gallery Section */
         .gallery {
             background: var(--light);
         }
@@ -476,6 +481,16 @@
         .gallery-item:hover .gallery-label {
             background: var(--primary);
             color: white;
+        }
+
+        /* Image Loading State */
+        .gallery-image img[data-loaded="false"] {
+            opacity: 0;
+        }
+
+        .gallery-image img[data-loaded="true"] {
+            opacity: 1;
+            animation: fadeIn 0.5s ease;
         }
 
         /* Lightbox */
@@ -671,7 +686,7 @@
         <nav>
             <div class="logo">
                 <div class="logo-icon">
-                    <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/454507264_1035213625279132_5725939772864053502_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEga2cUIw_ALRwkSESShyyLoIWmjBfE_BSghaaMF8T8FE8UskvMXBVEjMAMCW2gHYArX7NUNgPiZt-1jKV6LYvI&_nc_ohc=EoPLpICCNJMQ7kNvwFc27Rq&_nc_oc=AdlOdG-k3l-r6CdwRChys5fpU5FJwlnsQdGuLO7m3XyZPuXUakTP9ZXOYk4HqnWcfw8&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=oxDs7rt9Tb0q0XIxF_MNVg&oh=00_Afeb5BWh8cHpvUnpaL7PkV7ygnmnEo699gudE8LyvmyEDw&oe=68FA4734" alt="SKT Logo">
+                    <img src="https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-6/454507264_1035213625279132_5725939772864053502_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEga2cUIw_ALRwkSESShyyLoIWmjBfE_BSghaaMF8T8FE8UskvMXBVEjMAMCW2gHYArX7NUNgPiZt-1jKV6LYvI&_nc_ohc=EoPLpICCNJMQ7kNvwFc27Rq&_nc_oc=AdlOdG-k3l-r6CdwRChys5fpU5FJwlnsQdGuLO7m3XyZPuXUakTP9ZXOYk4HqnWcfw8&_nc_zt=23&_nc_ht=scontent.fbkk22-3.fna&_nc_gid=oxDs7rt9Tb0q0XIxF_MNVg&oh=00_Afeb5BWh8cHpvUnpaL7PkV7ygnmnEo699gudE8LyvmyEDw&oe=68FA4734" alt="SKT Logo" crossorigin="anonymous">
                 </div>
                 <span>S.K.T.</span>
             </div>
@@ -786,7 +801,7 @@
             <div class="video-grid">
                 <div class="video-item">
                     <div class="video-item-wrapper" onclick="openVideoModal()">
-                        <img class="video-thumbnail" src="https://img.youtube.com/vi/5SDgcdeycZU/maxresdefault.jpg" alt="วิดีโอ SKT">
+                        <img class="video-thumbnail" src="https://img.youtube.com/vi/5SDgcdeycZU/maxresdefault.jpg" alt="วิดีโอ SKT" crossorigin="anonymous">
                         <div class="video-play-btn">▶</div>
                     </div>
                 </div>
@@ -803,32 +818,46 @@
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item" onclick="openLightbox(0)">
-                    <div class="gallery-image"><img src="https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/558918247_1409706854496472_5640967511085873149_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFKEkvPrvigB8UCk3pCOKk6vXyMS-wtmh69fIxL7C2aHtiqMRyCWVa790YHnVD25uu6FatmRGWNyWH5wO8tfrK8&_nc_ohc=2Ds_dy0LbaMQ7kNvwFsUrCE&_nc_oc=AdmR63Aa3duYCll-_OTQrYiWKisdcVP6W5xRlG9cy7ey6R8KEXC7N9iMXut_pvFvWS8&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=PsTfn3dcMuO_LM0ZlcS6Mg&oh=00_AfeV1_qHeoB0K2TyPS1b2Zo0H-XfId-NchXqzBHkBGlf3A&oe=68FA7434" alt="ผลงาน"></div>
-                    <div class="gallery-label"></div>
+                    <div class="gallery-image">
+                        <img src="https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/558918247_1409706854496472_5640967511085873149_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFKEkvPrvigB8UCk3pCOKk6vXyMS-wtmh69fIxL7C2aHtiqMRyCWVa790YHnVD25uu6FatmRGWNyWH5wO8tfrK8&_nc_ohc=2Ds_dy0LbaMQ7kNvwFsUrCE&_nc_oc=AdmR63Aa3duYCll-_OTQrYiWKisdcVP6W5xRlG9cy7ey6R8KEXC7N9iMXut_pvFvWS8&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=PsTfn3dcMuO_LM0ZlcS6Mg&oh=00_AfeV1_qHeoB0K2TyPS1b2Zo0H-XfId-NchXqzBHkBGlf3A&oe=68FA7434" alt="ผลงาน SKT" crossorigin="anonymous" data-loaded="false" onload="this.setAttribute('data-loaded', 'true')" onerror="this.parentElement.style.background='linear-gradient(135deg, #0052cc, #00cc66)'">
+                    </div>
+                    <div class="gallery-label">งานต่อตัวถัง</div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(1)">
-                    <div class="gallery-image"><img src="https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/555572878_1397589912374833_1910455434371989110_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeF-jwk0VBsvVkvQzGT3rvITsFvUSdTAi22wW9RJ1MCLbcSovEpk8Qyv2owXyZkWAsmUZ5ox5hVZaBfTlL8oVdGf&_nc_ohc=OlNfvTaJ_xAQ7kNvwFTRSX_&_nc_oc=Adl_4e-QlitWsA9bRWxLujeVxDJ0XpeZ5q1wPb1AEMr_f_EVknJORrAUyY03BJAhj8c&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=uaivpvEKej_U1t10nxqKvw&oh=00_AfftK2VP4xlEMyTeONL112t3e_nAm-hxJFyFQZ0KewxPfg&oe=68FA8C8D" alt="ผลงาน"></div>
-                    <div class="gallery-label"></div>
+                    <div class="gallery-image">
+                        <img src="https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/555572878_1397589912374833_1910455434371989110_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeF-jwk0VBsvVkvQzGT3rvITsFvUSdTAi22wW9RJ1MCLbcSovEpk8Qyv2owXyZkWAsmUZ5ox5hVZaBfTlL8oVdGf&_nc_ohc=OlNfvTaJ_xAQ7kNvwFTRSX_&_nc_oc=Adl_4e-QlitWsA9bRWxLujeVxDJ0XpeZ5q1wPb1AEMr_f_EVknJORrAUyY03BJAhj8c&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=uaivpvEKej_U1t10nxqKvw&oh=00_AfftK2VP4xlEMyTeONL112t3e_nAm-hxJFyFQZ0KewxPfg&oe=68FA8C8D" alt="ผลงาน SKT" crossorigin="anonymous" data-loaded="false" onload="this.setAttribute('data-loaded', 'true')" onerror="this.parentElement.style.background='linear-gradient(135deg, #0052cc, #00cc66)'">
+                    </div>
+                    <div class="gallery-label">งานซ่อมแซม</div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(2)">
-                    <div class="gallery-image"><img src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t39.30808-6/548691399_1387347466732411_7599477218070043036_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFBVnpi4lfARQ1W3XtXCv_YmVd0UgJqMwmZV3RSAmozCQX_Wt5T2AzozVRaiRYMik5YGUaU8BWiDPsDuEVNNf3s&_nc_ohc=dbB8tYtnO4MQ7kNvwHlEsQf&_nc_oc=Adm5ygi8CybgxKXXfBLmd0JJ4UYAl-zaLyPCcjYuLG2GNiUyOCLJ5uM035sqNV-Roys&_nc_zt=23&_nc_ht=scontent.fbkk22-6.fna&_nc_gid=WOterz4EExXLhTdssqU6Jg&oh=00_AfcWlxl7x40YT-iL-e8X5DKGDBYjfFomQIYuDcSQ730ZHA&oe=68FA7ECB" alt="ผลงาน"></div>
-                    <div class="gallery-label"></div>
+                    <div class="gallery-image">
+                        <img src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t39.30808-6/548691399_1387347466732411_7599477218070043036_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFBVnpi4lfARQ1W3XtXCv_YmVd0UgJqMwmZV3RSAmozCQX_Wt5T2AzozVRaiRYMik5YGUaU8BWiDPsDuEVNNf3s&_nc_ohc=dbB8tYtnO4MQ7kNvwHlEsQf&_nc_oc=Adm5ygi8CybgxKXXfBLmd0JJ4UYAl-zaLyPCcjYuLG2GNiUyOCLJ5uM035sqNV-Roys&_nc_zt=23&_nc_ht=scontent.fbkk22-6.fna&_nc_gid=WOterz4EExXLhTdssqU6Jg&oh=00_AfcWlxl7x40YT-iL-e8X5DKGDBYjfFomQIYuDcSQ730ZHA&oe=68FA7ECB" alt="ผลงาน SKT" crossorigin="anonymous" data-loaded="false" onload="this.setAttribute('data-loaded', 'true')" onerror="this.parentElement.style.background='linear-gradient(135deg, #0052cc, #00cc66)'">
+                    </div>
+                    <div class="gallery-label">งานพ่นสี</div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(3)">
-                    <div class="gallery-image"><img src="https://scontent.fbkk22-7.fna.fbcdn.net/v/t39.30808-6/547415666_1382449493888875_3964008984652421989_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGSLso_HbSyu7x5cYhdOb-xQGdn_CUYBoFAZ2f8JRgGgbt1_elfAJc3PCpoubW0mIBTB8thGVy-Q9oYT2XSjKLG&_nc_ohc=DOUkerJidaIQ7kNvwF2zksq&_nc_oc=AdllzcDLVSvQTMboGBPJ1IOl1cLC6ewjV_BTE6r6EtA49uM5koxE_vVgJJapZ8d48e4&_nc_zt=23&_nc_ht=scontent.fbkk22-7.fna&_nc_gid=Skif-qbfKC-MS57BOJ-UGA&oh=00_Afe9E-4x_BIJcNtYyUhsleO6r1998QZaRmi8MKK0FVb4Zw&oe=68FA7D32" alt="ผลงาน"></div>
-                    <div class="gallery-label"></div>
+                    <div class="gallery-image">
+                        <img src="https://scontent.fbkk22-7.fna.fbcdn.net/v/t39.30808-6/547415666_1382449493888875_3964008984652421989_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGSLso_HbSyu7x5cYhdOb-xQGdn_CUYBoFAZ2f8JRgGgbt1_elfAJc3PCpoubW0mIBTB8thGVy-Q9oYT2XSjKLG&_nc_ohc=DOUkerJidaIQ7kNvwF2zksq&_nc_oc=AdllzcDLVSvQTMboGBPJ1IOl1cLC6ewjV_BTE6r6EtA49uM5koxE_vVgJJapZ8d48e4&_nc_zt=23&_nc_ht=scontent.fbkk22-7.fna&_nc_gid=Skif-qbfKC-MS57BOJ-UGA&oh=00_Afe9E-4x_BIJcNtYyUhsleO6r1998QZaRmi8MKK0FVb4Zw&oe=68FA7D32" alt="ผลงาน SKT" crossorigin="anonymous" data-loaded="false" onload="this.setAttribute('data-loaded', 'true')" onerror="this.parentElement.style.background='linear-gradient(135deg, #0052cc, #00cc66)'">
+                    </div>
+                    <div class="gallery-label">งานติดตั้ง</div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(4)">
-                    <div class="gallery-image"><img src="https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/544802635_1377776727689485_877200225706810811_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH-MJHCDwUpbRL1C4s7SnysjqYCVpygISuOpgJWnKAhK4e0TSBWZjZF-ojzF6ADI-dXFJ86n-UDS-tt5A292l8E&_nc_ohc=yRlIanKgQPkQ7kNvwEXwSqr&_nc_oc=AdnCq69di2z3dMlRnWz4Dte1be5QYa-WN_1kL_SBZswTG-0e_6oFx-VKSAmYM4x5lZ4&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=ghKdGeWY11qYhUeVOvLVAQ&oh=00_Afemw8gks0Isd2UYZ9-FvgSKEAPo7sIsbmEvx3qXewi1rg&oe=68FAA080" alt="ผลงาน"></div>
-                    <div class="gallery-label"></div>
+                    <div class="gallery-image">
+                        <img src="https://scontent.fbkk22-8.fna.fbcdn.net/v/t39.30808-6/544802635_1377776727689485_877200225706810811_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH-MJHCDwUpbRL1C4s7SnysjqYCVpygISuOpgJWnKAhK4e0TSBWZjZF-ojzF6ADI-dXFJ86n-UDS-tt5A292l8E&_nc_ohc=yRlIanKgQPkQ7kNvwEXwSqr&_nc_oc=AdnCq69di2z3dMlRnWz4Dte1be5QYa-WN_1kL_SBZswTG-0e_6oFx-VKSAmYM4x5lZ4&_nc_zt=23&_nc_ht=scontent.fbkk22-8.fna&_nc_gid=ghKdGeWY11qYhUeVOvLVAQ&oh=00_Afemw8gks0Isd2UYZ9-FvgSKEAPo7sIsbmEvx3qXewi1rg&oe=68FAA080" alt="ผลงาน SKT" crossorigin="anonymous" data-loaded="false" onload="this.setAttribute('data-loaded', 'true')" onerror="this.parentElement.style.background='linear-gradient(135deg, #0052cc, #00cc66)'">
+                    </div>
+                    <div class="gallery-label">งานตัดเชื่อม</div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(5)">
-                    <div class="gallery-image"><img src="https://scontent.fbkk22-7.fna.fbcdn.net/v/t39.30808-6/536278950_1374066151393876_3522617493189554074_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHPSKY6LggJZv9To1YaJxPOzD0WsY2kYrbMPRaxjaRitinjavs5OCzo-4hlnVLArijCJCVMUp-RipBReIf37JFo&_nc_ohc=Sp4HCJDP_AsQ7kNvwEJ-GaY&_nc_oc=AdnPdo8aYEUpUpJsN77PRpk8EY0R3zkbVSBkoMyVZKb1gCJiRoZSwe7sIm2dqMsM09Y&_nc_zt=23&_nc_ht=scontent.fbkk22-7.fna&_nc_gid=SdlVCp9pPO29SFDEtX1-Kw&oh=00_AfdpAxvhtvDF4DszH8VD6HzNguT1MWbAfK_LA5yCideL1A&oe=68FA84CF" alt="ผลงาน"></div>
-                    <div class="gallery-label"></div>
+                    <div class="gallery-image">
+                        <img src="https://scontent.fbkk22-7.fna.fbcdn.net/v/t39.30808-6/536278950_1374066151393876_3522617493189554074_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHPSKY6LggJZv9To1YaJxPOzD0WsY2kYrbMPRaxjaRitinjavs5OCzo-4hlnVLArijCJCVMUp-RipBReIf37JFo&_nc_ohc=Sp4HCJDP_AsQ7kNvwEJ-GaY&_nc_oc=AdnPdo8aYEUpUpJsN77PRpk8EY0R3zkbVSBkoMyVZKb1gCJiRoZSwe7sIm2dqMsM09Y&_nc_zt=23&_nc_ht=scontent.fbkk22-7.fna&_nc_gid=SdlVCp9pPO29SFDEtX1-Kw&oh=00_AfdpAxvhtvDF4DszH8VD6HzNguT1MWbAfK_LA5yCideL1A&oe=68FA84CF" alt="ผลงาน SKT" crossorigin="anonymous" data-loaded="false" onload="this.setAttribute('data-loaded', 'true')" onerror="this.parentElement.style.background='linear-gradient(135deg, #0052cc, #00cc66)'">
+                    </div>
+                    <div class="gallery-label">งานประกอบ</div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(6)">
-                    <div class="gallery-image"><img src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t39.30808-6/540723869_1372963878170770_6950951731331033065_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGxWWIwgfsY-meUBPGkieBEIuFrgB5l9N0i4WuAHmX03f97AWECzgMpjO8cYKbY_6KLHlpaz1z2jGFJHdN7wquu&_nc_ohc=00-nillhRcoQ7kNvwFk4HED&_nc_oc=AdnR-JGD2geg1xhPWVeK5TV1XGlbPCvKWPsXGMp0jw1_g2LPqJERAKVpm-hUdxo3Qq0&_nc_zt=23&_nc_ht=scontent.fbkk22-6.fna&_nc_gid=cUiyhs7lKxg_mBbUqZP-JQ&oh=00_Afeb_KTp2PanUbZjG-5bXtcjol6mJbtNJImcD8BOBEwX2A&oe=68FA9DF7" alt="ผลงาน"></div>
-                    <div class="gallery-label"></div>
+                    <div class="gallery-image">
+                        <img src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t39.30808-6/540723869_1372963878170770_6950951731331033065_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGxWWIwgfsY-meUBPGkieBEIuFrgB5l9N0i4WuAHmX03f97AWECzgMpjO8cYKbY_6KLHlpaz1z2jGFJHdN7wquu&_nc_ohc=00-nillhRcoQ7kNvwFk4HED&_nc_oc=AdnR-JGD2geg1xhPWVeK5TV1XGlbPCvKWPsXGMp0jw1_g2LPqJERAKVpm-hUdxo3Qq0&_nc_zt=23&_nc_ht=scontent.fbkk22-6.fna&_nc_gid=cUiyhs7lKxg_mBbUqZP-JQ&oh=00_Afeb_KTp2PanUbZjG-5bXtcjol6mJbtNJImcD8BOBEwX2A&oe=68FA9DF7" alt="ผลงาน SKT" crossorigin="anonymous" data-loaded="false" onload="this.setAttribute('data-loaded', 'true')" onerror="this.parentElement.style.background='linear-gradient(135deg, #0052cc, #00cc66)'">
+                    </div>
+                    <div class="gallery-label">งานส่งมอบ</div>
                 </div>
             </div>
         </div>
@@ -910,25 +939,10 @@
             document.body.style.overflow = 'auto';
         }
 
-        // ปิด modal เมื่อคลิกพื้นหลัง
         document.getElementById('videoModal').addEventListener('click', function(e) {
             if (e.target.id === 'videoModal') {
                 closeVideoModal();
             }
-        });
-
-        // ปิดเมื่อกด Escape
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeVideoModal();
-            }
-        });
-
-        // เล่นวิดีโออัตโนมัติเมื่อเปิดเข้าเวบ
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                openVideoModal();
-            }, 1000);
         });
 
         function openLightbox(index) {
@@ -944,18 +958,24 @@
             document.body.style.overflow = 'auto';
         }
 
-        // ปิด lightbox เมื่อคลิกพื้นหลัง
         document.getElementById('lightbox').addEventListener('click', function(e) {
             if (e.target.id === 'lightbox') {
                 closeLightbox();
             }
         });
 
-        // ปิดเมื่อกด Escape
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeLightbox();
+                closeVideoModal();
             }
+        });
+
+        // เล่นวิดีโออัตโนมัติเมื่อโหลดเว็บ
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                openVideoModal();
+            }, 1000);
         });
     </script>
 </body>
